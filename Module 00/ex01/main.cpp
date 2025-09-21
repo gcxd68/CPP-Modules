@@ -1,8 +1,8 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 int main(void) {
-	PhoneBook phoneBook;
+	PhoneBook PhoneBook;
 	
-	phoneBook.run();
+	PhoneBook.run();
 	return 0;
 }

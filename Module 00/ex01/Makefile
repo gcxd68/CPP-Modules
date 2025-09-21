@@ -6,13 +6,13 @@
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/20 18:22:53 by gdosch            #+#    #+#              #
-#    Updated: 2025/09/21 14:01:13 by gdosch           ###   ########.fr        #
+#    Updated: 2025/09/21 14:56:03 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =			main.cpp \
-				contact.cpp \
-				phonebook.cpp
+				Contact.cpp \
+				PhoneBook.cpp
 
 OBJS =			$(SRCS:.cpp=.o)
 
