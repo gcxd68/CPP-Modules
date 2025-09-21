@@ -5,26 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/09/20 18:22:53 by gdosch            #+#    #+#              #
-#    Updated: 2025/09/21 15:11:03 by gdosch           ###   ########.fr        #
+#    Created: 2025/09/21 15:03:36 by gdosch            #+#    #+#              #
+#    Updated: 2025/09/21 15:25:32 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			phonebook
+NAME =			account
 
 CXX =			c++
-CXXFLAGS =		-Wall -Wextra -Werror #-std=c++98
+CXXFLAGS =		-Wall -Wextra -Werror -std=c++98
 
-SRCS =			main.cpp \
-				Contact.cpp \
-				PhoneBook.cpp
+SRCS =			tests.cpp \
+				Account.cpp
 
 OBJS =			$(SRCS:.cpp=.o)
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+				$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 				rm -f $(OBJS)
