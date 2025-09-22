@@ -51,7 +51,7 @@ std::string PhoneBook::_truncateString(const std::string& str) const {
 	return str;
 }
 
-void PhoneBook::addContact(void) {
+void PhoneBook::_addContact(void) {
 	Contact newContact;
 
 	std::cout
@@ -69,7 +69,7 @@ void PhoneBook::addContact(void) {
 	std::cout << std::endl << "Contact added successfully" << std::endl;
 }
 
-void PhoneBook::displayAllContacts(void) const {
+void PhoneBook::_displayAllContacts(void) const {
 	std::cout
 		<< std::endl
 		<< "\t" << std::setw(10) << "Index" << "|"
@@ -86,7 +86,7 @@ void PhoneBook::displayAllContacts(void) const {
 	std::cout << std::endl;
 }
 
-void PhoneBook::displayContact(int index) const {
+void PhoneBook::_displayContact(int index) const {
 	const Contact& contact = this->_contacts[index];
 	std::cout
 		<< std::endl
@@ -99,19 +99,19 @@ void PhoneBook::displayContact(int index) const {
 		<< std::endl;
 }
 
-void PhoneBook::searchContacts(void) const {
+void PhoneBook::_searchContacts(void) const {
 	if (!this->_contactCount)
 	{
 		std::cout << "No contacts in the phonebook" << std::endl;
 		return;
 	}
-	displayAllContacts();
+	_displayAllContacts();
 	std::string input;
 	std::cout << "Enter the index of the contact to display: ";
 	if (!std::getline(std::cin, input))
 		_handleEOF();
 	else if (input.length() == 1 && input[0] > '0' && input[0] - '1' < this->_contactCount)
-		displayContact(input[0] - '1');
+		_displayContact(input[0] - '1');
 	else
 		std::cout << "Invalid index" << std::endl;
 }
@@ -124,9 +124,9 @@ void PhoneBook::run(void) {
 		if (!std::getline(std::cin, command))
 			_handleEOF();
 		else if (command == "ADD")
-			addContact();
+			_addContact();
 		else if (command == "SEARCH")
-			searchContacts();
+			_searchContacts();
 		else if (command == "EXIT")
 			break;
 		else

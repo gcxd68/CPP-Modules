@@ -18,24 +18,31 @@
 # include <iomanip>
 
 class PhoneBook {
+
+public:
+	// Constructor
+	PhoneBook();
+
+	// Main loop
+	void		run(void);
+
 private:
+	// Attributes
 	Contact		_contacts[8];
 	int			_contactCount;
 	int			_nextIndex;
 
-	std::string	_truncateString(const std::string& str) const;
+	// Core methods
+	void		_addContact(void);
+	void		_searchContacts(void) const;
+	void		_displayAllContacts(void) const;
+	void		_displayContact(int index) const;
+
+	// Helpers
+	void		_handleEOF(void) const;
 	std::string	_getInput(const std::string& prompt) const;
 	std::string	_getPhoneNumber(void) const;
-	void		_handleEOF(void) const;
-
-public:
-	PhoneBook();
-
-	void		addContact(void);
-	void		searchContacts(void) const;
-	void		displayAllContacts(void) const;
-	void		displayContact(int index) const;
-	void		run(void);
+	std::string	_truncateString(const std::string& str) const;
 };
 
 #endif
