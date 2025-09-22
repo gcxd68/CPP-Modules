@@ -4,5 +4,4 @@ int main(void) {
 	PhoneBook PhoneBook;
 	
 	PhoneBook.run();
-	return 0;
 }

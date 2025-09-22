@@ -17,7 +17,7 @@ PhoneBook::PhoneBook() : _contactCount(0), _nextIndex(0) {
 
 void PhoneBook::_handleEOF() const {
 	std::cout << std::endl << "EOF detected, exiting" << std::endl;
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
 
 std::string PhoneBook::_getInput(const std::string& prompt) const {
