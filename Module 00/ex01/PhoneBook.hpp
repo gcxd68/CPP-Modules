@@ -25,17 +25,17 @@ private:
 
 	std::string	_truncateString(const std::string& str) const;
 	std::string	_getInput(const std::string& prompt) const;
-	std::string	_getPhoneNumber() const;
-	void		_handleEOF() const;
+	std::string	_getPhoneNumber(void) const;
+	void		_handleEOF(void) const;
 
 public:
 	PhoneBook();
 
-	void		addContact();
-	void		searchContacts() const;
-	void		displayAllContacts() const;
+	void		addContact(void);
+	void		searchContacts(void) const;
+	void		displayAllContacts(void) const;
 	void		displayContact(int index) const;
-	void		run();
+	void		run(void);
 };
 
 #endif

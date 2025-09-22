@@ -15,7 +15,7 @@
 PhoneBook::PhoneBook() : _contactCount(0), _nextIndex(0) {
 }
 
-void PhoneBook::_handleEOF() const {
+void PhoneBook::_handleEOF(void) const {
 	std::cout << std::endl << "EOF detected, exiting" << std::endl;
 	exit(EXIT_SUCCESS);
 }
@@ -34,7 +34,7 @@ std::string PhoneBook::_getInput(const std::string& prompt) const {
 	return input;
 }
 
-std::string PhoneBook::_getPhoneNumber() const {
+std::string PhoneBook::_getPhoneNumber(void) const {
 	std::string input;
 
 	while (true) {
@@ -51,7 +51,7 @@ std::string PhoneBook::_truncateString(const std::string& str) const {
 	return str;
 }
 
-void PhoneBook::addContact() {
+void PhoneBook::addContact(void) {
 	Contact newContact;
 
 	std::cout
@@ -69,7 +69,7 @@ void PhoneBook::addContact() {
 	std::cout << std::endl << "Contact added successfully" << std::endl;
 }
 
-void PhoneBook::displayAllContacts() const {
+void PhoneBook::displayAllContacts(void) const {
 	std::cout
 		<< std::endl
 		<< "\t" << std::setw(10) << "Index" << "|"
@@ -99,7 +99,7 @@ void PhoneBook::displayContact(int index) const {
 		<< std::endl;
 }
 
-void PhoneBook::searchContacts() const {
+void PhoneBook::searchContacts(void) const {
 	if (!this->_contactCount)
 	{
 		std::cout << "No contacts in the phonebook" << std::endl;
@@ -116,7 +116,7 @@ void PhoneBook::searchContacts() const {
 		std::cout << "Invalid index" << std::endl;
 }
 
-void PhoneBook::run() {
+void PhoneBook::run(void) {
 	std::string command;
 	while (true)
 	{
