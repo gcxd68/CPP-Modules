@@ -46,25 +46,20 @@ void Account::displayAccountsInfos(void) {
 }
 
 void Account::_displayTimestamp(void) {
-	std::time_t t = std::time(0);
-	std::tm* now = std::localtime(&t);
+	const std::time_t t = std::time(0);
+	const std::tm* now = std::localtime(&t);
+
 	std::cout
-		<< "["
-		<< (now->tm_year + 1900)
+		<< "[" << (now->tm_year + 1900)
 		<< std::setfill('0') << std::setw(2) << (now->tm_mon + 1)
-		<< std::setfill('0') << std::setw(2) << now->tm_mday
-		<< "_"
+		<< std::setfill('0') << std::setw(2) << now->tm_mday << "_"
 		<< std::setfill('0') << std::setw(2) << now->tm_hour
 		<< std::setfill('0') << std::setw(2) << now->tm_min
-		<< std::setfill('0') << std::setw(2) << now->tm_sec
-		<< "] ";
+		<< std::setfill('0') << std::setw(2) << now->tm_sec << "] ";
 }
 
-Account::Account(int initial_deposit) {
-	this->_accountIndex = _nbAccounts;
-	this->_amount = initial_deposit;
-	this->_nbDeposits = 0;
-	this->_nbWithdrawals = 0;
+Account::Account(int initial_deposit)
+	: _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0) {
 	_nbAccounts++;
 	_totalAmount += initial_deposit;
 	_displayTimestamp();
@@ -99,25 +94,23 @@ void Account::makeDeposit(int deposit) {
 }
 
 bool Account::makeWithdrawal(int withdrawal) {
-	int p_amount = this->_amount;
+	const int p_amount = this->_amount;
 
+	_displayTimestamp();
+	std::cout
+		<< "index:" << this->_accountIndex
+		<< ";p_amount:" << p_amount
+		<< ";withdrawal:";
 	if (withdrawal > this->_amount) {
-		_displayTimestamp();
-		std::cout
-			<< "index:" << this->_accountIndex
-			<< ";p_amount:" << p_amount
-			<< ";withdrawal:refused" << std::endl;
+		std::cout << "refused" << std::endl;
 		return false;
 	}
 	this->_amount -= withdrawal;
 	this->_nbWithdrawals++;
 	_totalAmount -= withdrawal;
 	_totalNbWithdrawals++;
-	_displayTimestamp();
 	std::cout
-		<< "index:" << this->_accountIndex
-		<< ";p_amount:" << p_amount
-		<< ";withdrawal:" << withdrawal
+		<< withdrawal
 		<< ";amount:" << this->_amount
 		<< ";nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 	return true;
