@@ -15,14 +15,11 @@
 
 int main(int argc, char **argv)
 {
-	if (argc == 1) {
+	if (argc == 1)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	} else {
-		for (int i = 1; i < argc; i++) {
-			std::string arg = argv[i];
-			for (size_t j = 0; j < arg.length(); j++)
-				std::cout << static_cast<char>(std::toupper(arg[j]));
-		}
-	}
+	else
+		for (int i = 1; i < argc; i++)
+			for (size_t j = 0; argv[i][j]; j++)
+				std::cout << static_cast<char>(std::toupper(argv[i][j]));
 	std::cout << std::endl;
 }

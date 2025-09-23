@@ -21,13 +21,15 @@ void PhoneBook::_handleEOF(void) const {
 }
 
 std::string PhoneBook::_getInput(const std::string& prompt) const {
-	std::string input;
-	
+	std::string	input;
+
 	while (input.empty())
 	{
 		std::cout << prompt;
-		if (!std::getline(std::cin, input))
+		if (!std::getline(std::cin, input)) {
+			std::cout << std::endl;
 			_handleEOF();
+		}
 		if (input.empty())
 			std::cout << "\t" << "Field cannot be empty, try again" << std::endl;
 	}
@@ -35,7 +37,7 @@ std::string PhoneBook::_getInput(const std::string& prompt) const {
 }
 
 std::string PhoneBook::_getPhoneNumber(void) const {
-	std::string input;
+	std::string	input;
 
 	while (true) {
 		input = _getInput("\tPhone number: ");
@@ -46,23 +48,18 @@ std::string PhoneBook::_getPhoneNumber(void) const {
 }
 
 std::string PhoneBook::_truncateString(const std::string& str) const {
-	if (str.length() > 10)
-		return str.substr(0, 9) + ".";
-	return str;
+	return (str.length() > 10) ? str.substr(0, 9) + "." : str;
 }
 
 void PhoneBook::_addContact(void) {
-	Contact newContact;
+	Contact&	newContact = this->_contacts[this->_nextIndex];
 
-	std::cout
-		<< std::endl
-		<< "\t" << "ADDING NEW CONTACT" << std::endl;
+	std::cout << std::endl << "\t" << "ADDING NEW CONTACT" << std::endl;
 	newContact.setFirstName(_getInput("\tFirst name: "));
 	newContact.setLastName(_getInput("\tLast name: "));
 	newContact.setNickname(_getInput("\tNickname: "));
 	newContact.setPhoneNumber(_getPhoneNumber());
 	newContact.setDarkestSecret(_getInput("\tDarkest secret: "));
-	this->_contacts[this->_nextIndex] = newContact;
 	this->_nextIndex = (this->_nextIndex + 1) % 8;
 	if (this->_contactCount < 8)
 		this->_contactCount++;
@@ -77,17 +74,20 @@ void PhoneBook::_displayAllContacts(void) const {
 		<< std::setw(10) << "Last Name" << "|"
 		<< std::setw(10) << "Nickname" << std::endl
 		<< "\t" << "----------|----------|----------|----------" << std::endl;
-	for (int i = 0; i < this->_contactCount; i++)
+	for (int i = 0; i < this->_contactCount; i++) {
+		const Contact& contact = this->_contacts[i];
 		std::cout
 			<< "\t" << std::setw(10) << i + 1 << "|"
-			<< std::setw(10) << _truncateString(this->_contacts[i].getFirstName()) << "|"
-			<< std::setw(10) << _truncateString(this->_contacts[i].getLastName()) << "|"
-			<< std::setw(10) << _truncateString(this->_contacts[i].getNickname()) << std::endl;
+			<< std::setw(10) << _truncateString(contact.getFirstName()) << "|"
+			<< std::setw(10) << _truncateString(contact.getLastName()) << "|"
+			<< std::setw(10) << _truncateString(contact.getNickname()) << std::endl;
+	}
 	std::cout << std::endl;
 }
 
 void PhoneBook::_displayContact(int index) const {
-	const Contact& contact = this->_contacts[index];
+	const Contact&	contact = this->_contacts[index];
+
 	std::cout
 		<< std::endl
 		<< "\t" << "CONTACT DETAILS" << std::endl
@@ -117,7 +117,8 @@ void PhoneBook::_searchContacts(void) const {
 }
 
 void PhoneBook::run(void) {
-	std::string command;
+	std::string	command;
+
 	while (true)
 	{
 		std::cout << "Please use ADD, SEARCH or EXIT: ";
