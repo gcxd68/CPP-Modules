@@ -15,26 +15,27 @@
 
 # include <iostream>
 # include <string>
+# include <ctime>
 
 class Zombie {
 
 public:
 	// Constructor
-	Zombie(std::string name);
+	Zombie(const std::string name);
 
 	// Destructor
 	~Zombie(void);
 
-	// Functions
+private:
+	// Method(s)
 	void		announce( void );
 
-private:
-	// Attributes
+	// Attribute(s)
 	std::string	name;
 
 };
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie*	newZombie( std::string name );
+void	randomChump( std::string name );
 
 #endif
