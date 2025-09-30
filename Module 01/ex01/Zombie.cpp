@@ -12,10 +12,6 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie( std::string name ) : name(name) {
-	announce();
-}
-
 Zombie::~Zombie( void ) {
 	static const char *deathMsgs[] = {
 		" was chopped up with a chainsaw.",
@@ -37,4 +33,8 @@ Zombie::~Zombie( void ) {
 
 void Zombie::announce( void ) {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void Zombie::setName( const std::string& newName ) {
+	this->name = newName;
 }
