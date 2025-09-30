@@ -22,10 +22,10 @@ class PhoneBook {
 
 public:
 	// Constructor
-	PhoneBook();
+	PhoneBook( void );
 
 	// Main loop
-	void		run(void);
+	void		run( void );
 
 private:
 	// Attributes
@@ -34,16 +34,16 @@ private:
 	int			_nextIndex;
 
 	// Core methods
-	void		_addContact(void);
-	void		_searchContacts(void) const;
-	void		_displayAllContacts(void) const;
-	void		_displayContact(int index) const;
+	void		_addContact( void );
+	void		_searchContacts( void ) const;
+	void		_displayAllContacts( void ) const;
+	void		_displayContact( int index ) const;
 
 	// Helpers
-	void		_handleEOF(void) const;
-	std::string	_getInput(const std::string& prompt) const;
-	std::string	_getPhoneNumber(void) const;
-	std::string	_truncateString(const std::string& str) const;
+	void		_handleEOF( void ) const;
+	std::string	_getInput( const std::string& prompt ) const;
+	std::string	_getPhoneNumber( void ) const;
+	std::string	_truncateString( const std::string& str ) const;
 };
 
 #endif
