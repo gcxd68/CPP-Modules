@@ -110,7 +110,7 @@ void PhoneBook::_searchContacts( void ) const {
 	std::cout << "Enter the index of the contact to display: ";
 	if (!std::getline(std::cin, input))
 		_handleEOF();
-	else if (input.length() == 1 && input[0] > '0' && input[0] - '1' < this->_contactCount)
+	if (input.length() == 1 && input[0] > '0' && input[0] - '1' < this->_contactCount)
 		_displayContact(input[0] - '1');
 	else
 		std::cout << "Invalid index" << std::endl;
@@ -124,7 +124,7 @@ void PhoneBook::run( void ) {
 		std::cout << "Please use ADD, SEARCH or EXIT: ";
 		if (!std::getline(std::cin, command))
 			_handleEOF();
-		else if (command == "ADD")
+		if (command == "ADD")
 			_addContact();
 		else if (command == "SEARCH")
 			_searchContacts();
