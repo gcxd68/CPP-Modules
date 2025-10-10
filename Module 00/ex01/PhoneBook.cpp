@@ -130,7 +130,5 @@ void PhoneBook::run( void ) {
 			_searchContacts();
 		else if (command == "EXIT")
 			break;
-		else
-			std::cout << "Invalid command" << std::endl;
 	}
 }
