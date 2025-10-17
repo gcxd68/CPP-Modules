@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+# include <iostream>
+# include <ctime>
 
 Zombie::~Zombie( void ) {
 	static const char *deathMsgs[] = {
@@ -28,13 +30,13 @@ Zombie::~Zombie( void ) {
 	};
 	static const int count = sizeof(deathMsgs) / sizeof(*deathMsgs);
 
-	std::cout << this->name << deathMsgs[clock() % count] << std::endl;
+	std::cout << this->_name << deathMsgs[clock() % count] << std::endl;
 }
 
 void Zombie::announce( void ) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
 void Zombie::setName( const std::string& newName ) {
-	this->name = newName;
+	this->_name = newName;
 }

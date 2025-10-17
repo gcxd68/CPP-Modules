@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+# include <iostream>
+# include <ctime>
 
-Zombie::Zombie( std::string name ) : name(name) {
+Zombie::Zombie( const std::string &name ) : _name(name) {
 	announce();
 }
 
@@ -32,9 +34,9 @@ Zombie::~Zombie( void ) {
 	};
 	static const int count = sizeof(deathMsgs) / sizeof(*deathMsgs);
 
-	std::cout << this->name << deathMsgs[clock() % count] << std::endl;
+	std::cout << this->_name << deathMsgs[clock() % count] << std::endl;
 }
 
 void Zombie::announce( void ) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

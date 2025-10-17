@@ -13,15 +13,13 @@
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
-# include <iostream>
 # include <string>
-# include <ctime>
 
 class Zombie {
 
 public:
 	// Constructor
-	Zombie( const std::string name );
+	Zombie( const std::string &name );
 
 	// Destructor
 	~Zombie( void );
@@ -31,7 +29,7 @@ private:
 	void		announce( void );
 
 	// Attribute(s)
-	std::string	name;
+	std::string	_name;
 
 };
 

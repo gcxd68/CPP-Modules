@@ -13,9 +13,7 @@
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
-# include <iostream>
 # include <string>
-# include <ctime>
 
 class Zombie {
 
@@ -29,7 +27,7 @@ public:
 
 private:
 	// Attribute(s)
-	std::string	name;
+	std::string	_name;
 
 };
 
