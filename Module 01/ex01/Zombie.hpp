@@ -18,19 +18,25 @@
 class Zombie {
 
 public:
-	// Destructor
-	~Zombie( void );
 
-	// Public method(s)
-	void		announce( void );
-	void		setName( const std::string& newName );
+	// Constructor / Destructor
+	Zombie(void);
+	~Zombie(void);
+
+	// Core method(s)
+	void		announce(void);
+
+	// Accessor(s)
+	void		setName(const std::string& newName);
 
 private:
+
 	// Attribute(s)
 	std::string	_name;
 
 };
 
-Zombie*	zombieHorde( int N, std::string name );
+// Free function(s)
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

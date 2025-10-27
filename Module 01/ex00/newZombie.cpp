@@ -12,6 +12,7 @@
 
 #include "Zombie.hpp"
 
-Zombie* newZombie( std::string name ) {
+// Free function(s)
+Zombie* newZombie(std::string name) {
 	return new Zombie(name);
 }

@@ -10,4 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
+# include <string>
+
+// Forward declaration
+class Weapon;
+
+class HumanB {
+
+	public:
+
+		// Constructor / Destructor
+		explicit HumanB(const std::string& name);
+		~HumanB();	
+
+		// Accessor(s)
+		void	setWeapon(Weapon& weapon);
+
+		// Core method(s)
+		void	attack() const;
+
+	private:
+
+		// Attribute(s)
+		std::string	_name;
+		Weapon*		_weapon;
+
+};
+
+#endif

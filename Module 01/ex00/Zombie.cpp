@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-# include <iostream>
-# include <ctime>
+#include <iostream>
+#include <ctime>
 
-Zombie::Zombie( const std::string &name ) : _name(name) {
+// Constructor
+Zombie::Zombie(const std::string &name) : _name(name) {
 	announce();
 }
 
-Zombie::~Zombie( void ) {
+// Destructor
+Zombie::~Zombie(void) {
 	static const char *deathMsgs[] = {
 		" was chopped up with a chainsaw.",
 		" was disintegrated by a rocket launcher.",
@@ -37,6 +39,7 @@ Zombie::~Zombie( void ) {
 	std::cout << this->_name << deathMsgs[clock() % count] << std::endl;
 }
 
-void Zombie::announce( void ) {
+// Core method(s)
+void Zombie::announce(void) {
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

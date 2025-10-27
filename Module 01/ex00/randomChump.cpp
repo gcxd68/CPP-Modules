@@ -12,6 +12,7 @@
 
 #include "Zombie.hpp"
 
-void randomChump( std::string name ) {
+// Free function(s)
+void randomChump(std::string name) {
 	Zombie stackZombie(name);
 }

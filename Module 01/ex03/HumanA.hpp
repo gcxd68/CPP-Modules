@@ -10,4 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
+# include <string>
+
+// Forward declaration
+class Weapon;
+
+class HumanA {
+
+	public:
+
+		// Constructor / Destructor
+		HumanA(const std::string& name, Weapon& weapon);
+		~HumanA();
+
+		// Core method(s)
+		void	attack() const;
+
+	private:
+
+		// Attribute(s)
+		std::string	_name;
+		Weapon&		_weapon;
+
+};
+
+#endif

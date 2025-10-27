@@ -14,7 +14,11 @@
 # include <iostream>
 # include <ctime>
 
-Zombie::~Zombie( void ) {
+// Constructor
+Zombie::Zombie(void) {}
+
+// Destructor
+Zombie::~Zombie(void) {
 	static const char *deathMsgs[] = {
 		" was chopped up with a chainsaw.",
 		" was disintegrated by a rocket launcher.",
@@ -33,10 +37,12 @@ Zombie::~Zombie( void ) {
 	std::cout << this->_name << deathMsgs[clock() % count] << std::endl;
 }
 
-void Zombie::announce( void ) {
+// Core method(s)
+void Zombie::announce(void) {
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void Zombie::setName( const std::string& newName ) {
+// Accessor(s)
+void Zombie::setName(const std::string& newName) {
 	this->_name = newName;
 }

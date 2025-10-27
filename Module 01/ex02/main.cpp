@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
-# include <string>
+#include <iostream>
+#include <string>
 
-int main( void ) {
+int main(void) {
 	const std::string string = "HI THIS IS BRAIN";
 	const std::string* stringPTR = &string;
 	const std::string& stringREF = string;

@@ -12,7 +12,8 @@
 
 #include "Zombie.hpp"
 
-Zombie*	zombieHorde( int N, std::string name ) {
+// Free function(s)
+Zombie*	zombieHorde(int N, std::string name) {
 	if (N <= 0)
 		return NULL;
 	Zombie* horde = new(std::nothrow) Zombie[N];

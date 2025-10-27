@@ -12,7 +12,7 @@
 
 #include "Zombie.hpp"
 
-int main( void ) {
+int main(void) {
 	Zombie* heapZombie = newZombie("HeapWalker");
 	delete heapZombie;
 	randomChump("StackWalker");

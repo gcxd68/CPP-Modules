@@ -18,22 +18,23 @@
 class Zombie {
 
 public:
-	// Constructor
-	Zombie( const std::string &name );
 
-	// Destructor
-	~Zombie( void );
+	// Constructor / Destructor
+	explicit Zombie(const std::string &name);
+	~Zombie(void);
 
 private:
-	// Method(s)
-	void		announce( void );
+	
+	// Core method(s)
+	void		announce(void);
 
 	// Attribute(s)
 	std::string	_name;
 
 };
 
-Zombie*	newZombie( std::string name );
-void	randomChump( std::string name );
+// Free function(s)
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif
