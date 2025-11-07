@@ -23,10 +23,10 @@ public:
 	explicit Zombie(const std::string &name);
 	~Zombie(void);
 
-private:
-	
-	// Core method(s)
+	// Core Method(s)
 	void		announce(void);
+
+private:
 
 	// Attribute(s)
 	std::string	_name;

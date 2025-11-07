@@ -5,17 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 13:59:14 by gdosch            #+#    #+#             */
-/*   Updated: 2025/09/29 13:59:15 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/01 15:17:02 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/01 15:17:03 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Fixed.hpp"
+#include <iostream>
 
 int main(void) {
-	Zombie*	heapZombie = newZombie("HeapWalker");
+	Fixed		a;
+	Fixed const	b(10);
+	Fixed const	c(42.42f);
+	Fixed const	d(b);
 
-	heapZombie->announce();
-	delete heapZombie;
-	randomChump("StackWalker");
+	a = Fixed(1234.4321f);
+	std::cout << "a is " << a << std::endl;
+	std::cout << "b is " << b << std::endl;
+	std::cout << "c is " << c << std::endl;
+	std::cout << "d is " << d << std::endl;
+	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 }

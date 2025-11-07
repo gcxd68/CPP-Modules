@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 
 int errorExit(const std::string& msg) {
@@ -39,9 +40,10 @@ int main(int argc, char** argv) {
 	std::ifstream infile(argv[1], std::ios::binary);
 	if (!infile.is_open())
 		return errorExit("Error: cannot open file '" + std::string(argv[1]) + "'");
-	std::string content((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
+	std::stringstream buffer;
+	buffer << infile.rdbuf();
 	infile.close();
-	std::string result = replaceAll(content, argv[2], argv[3]);
+	std::string result = replaceAll(buffer.str(), argv[2], argv[3]);
 	std::string outfilename = std::string(argv[1]) + ".replace";
 	std::ofstream outfile(outfilename.c_str(), std::ios::binary);
 	if (!outfile.is_open())

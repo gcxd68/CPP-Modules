@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			zombiehorde
+NAME			= zombiehorde
 
-CXX =			c++
-CXXFLAGS =		-Wall -Wextra -Werror -std=c++98
+CXX				= c++
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS =			main.cpp Zombie.cpp zombieHorde.cpp
-OBJS =			$(SRCS:.cpp=.o)
+SRCS			= main.cpp Zombie.cpp zombieHorde.cpp
+OBJS			= $(SRCS:.cpp=.o)
 
 all:			$(NAME)
 
@@ -32,3 +32,4 @@ fclean:			clean
 re:				fclean all
 
 .PHONY:			all clean fclean re
+.SILENT:

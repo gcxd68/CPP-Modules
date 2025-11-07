@@ -15,9 +15,7 @@
 #include <ctime>
 
 // Constructor
-Zombie::Zombie(const std::string &name) : _name(name) {
-	announce();
-}
+Zombie::Zombie(const std::string &name) : _name(name) {}
 
 // Destructor
 Zombie::~Zombie(void) {

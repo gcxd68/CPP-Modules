@@ -15,7 +15,9 @@
 #include <iostream>
 
 // Constructor
-HumanB::HumanB(const std::string& name) : _name(name), _weapon(NULL) {}
+HumanB::HumanB(const std::string& name) : _name(name), _weapon(NULL) {
+	std::cout << this->_name << " shows up" << std::endl;
+}
 
 // Denstructor
 HumanB::~HumanB() {}
@@ -23,12 +25,15 @@ HumanB::~HumanB() {}
 // Accessor(s)
 void	HumanB::setWeapon(Weapon& weapon) {
 	this->_weapon = &weapon;
+	std::cout << this->_name << " grabs a " << this->_weapon->getType() << std::endl;
 }
 
 // Core method(s)
 void	HumanB::attack() const {
+	std::cout << this->_name;
 	if (this->_weapon)
-		std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
+		std::cout << " attacks with their " << this->_weapon->getType();
 	else
-		std::cout << this->_name << " has no weapon!" << std::endl;
+		std::cout << " cannot attack, he has no weapon!";
+	std::cout << std::endl;
 }

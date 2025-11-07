@@ -15,7 +15,9 @@
 #include <iostream>
 
 // Constructor
-HumanA::HumanA(const std::string& name, Weapon& weapon) : _name(name), _weapon(weapon) {}
+HumanA::HumanA(const std::string& name, Weapon& weapon) : _name(name), _weapon(weapon) {
+	std::cout << this->_name << " shows up with a " << this->_weapon.getType() << std::endl;
+}
 
 // Destructor
 HumanA::~HumanA() {}

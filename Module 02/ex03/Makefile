@@ -3,25 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
+#    By: gdosch <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/09/20 18:22:53 by gdosch            #+#    #+#              #
-#    Updated: 2025/09/21 15:11:03 by gdosch           ###   ########.fr        #
+#    Created: 2025/11/01 15:16:54 by gdosch            #+#    #+#              #
+#    Updated: 2025/11/01 15:16:55 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= zombie
+NAME			= BSP
 
 CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS			= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS			= main.cpp Fixed.cpp bsp.cpp Point.cpp
 OBJS			= $(SRCS:.cpp=.o)
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+				$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 				rm -f $(OBJS)

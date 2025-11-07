@@ -14,26 +14,21 @@
 #include <iostream>
 
 int main(void) {
-	Harl harl;
+	Harl	harl;
 	
-	std::cout << "=== Testing all complaint levels ===" << std::endl;
+	std::cout << std::endl << "=== Testing all complaint levels ===" << std::endl;
 	std::cout << std::endl;
-	
 	harl.complain("DEBUG");
 	harl.complain("INFO");
 	harl.complain("WARNING");
 	harl.complain("ERROR");
-	
-	std::cout << "=== Testing invalid level ===" << std::endl;
+	std::cout << std::endl << "=== Testing invalid level ===" << std::endl;
 	std::cout << std::endl;
-	
 	harl.complain("UNKNOWN");
+	harl.complain("ANYTHING");
 	harl.complain("");
-	harl.complain("debug");
-	
-	std::cout << "=== Testing multiple complaints ===" << std::endl;
+	std::cout << std::endl << "=== Testing multiple complaints ===" << std::endl;
 	std::cout << std::endl;
-	
 	harl.complain("ERROR");
 	harl.complain("INFO");
 	harl.complain("WARNING");

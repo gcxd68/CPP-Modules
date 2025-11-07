@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 13:48:40 by gdosch            #+#    #+#             */
-/*   Updated: 2025/09/30 13:48:41 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/01 15:17:13 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/01 15:17:14 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-#include <string>
+class Fixed {
 
-class Weapon {
+public:
 
-	public:
+	// Default constructor
+	Fixed(void);
 
-		// Constructor / Destructor
-		explicit Weapon(const std::string& type);
-		~Weapon();
+	// Copy constructor
+	Fixed(const Fixed& other);
 
-		// Accessor(s)
-		const std::string&	getType() const;
-		void				setType(const std::string& type);
+	// Copy assignment operator
+	Fixed&	operator=(const Fixed& other);
 
-	private:
+	// Destructor
+	~Fixed(void);
 
-		// Attribute(s)
-		std::string _type;
+	// Accessors
+	int		getRawBits(void) const;
+	void	setRawBits(int const raw);
+
+private:
+
+	//Attributes
+	int					_value;
+	static const int	_fractionalBits = 8;
 
 };
 
