@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:13:03 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/07 14:07:22 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/10 13:18:35 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 int main()
 {
-	std::cout << MAGENTA << "=== TEST 1: CONSTRUCTION ===" << RESET << std::endl;
+	std::cout << MAGENTA << "=== TEST 1: CONSTRUCTION CHAIN ===" << RESET << std::endl;
 	ClapTrap clap1("Bob");
 	std::cout << std::endl;
 
-	std::cout << MAGENTA << "=== TEST 2: BASIC ATTACKS ===" << RESET << std::endl;
+	std::cout << MAGENTA << "=== TEST 2: CLAPTRAP ATTACKS ===" << RESET << std::endl;
 	for (int i = 0; i < 3; i++)
-		clap1.attack("the enemy");
+		clap1.attack("an enemy");
 	std::cout << std::endl;
 
 	std::cout << MAGENTA << "=== TEST 3: TAKING DAMAGE ===" << RESET << std::endl;
@@ -38,8 +38,6 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << MAGENTA << "=== TEST 5: EXHAUSTING ENERGY ===" << RESET << std::endl;
-	// Bob has used 5 energy points (3 attacks + 2 repairs)
-	// He has 5 energy points left, let's use them all
 	for (int i = 0; i < 5; i++)
 		clap1.attack("an enemy");
 	std::cout << "[ Trying to attack with no energy left ] " << RESET;
@@ -49,9 +47,9 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << MAGENTA << "=== TEST 6: DEATH SCENARIO ===" << RESET << std::endl;
-	ClapTrap clap2("Alice");
-	clap2.takeDamage(5);   // Alice has 5 HP left
-	clap2.takeDamage(10);  // Alice takes more damage than remaining HP (dies)
+	ClapTrap clap2("Doomed");
+	clap2.takeDamage(5);
+	clap2.takeDamage(10);
 	std::cout << "[ Trying to attack while dead ] " << RESET;
 	clap2.attack("should_fail");
 	std::cout << "[ Trying to repair while dead ] " << RESET;
@@ -61,7 +59,7 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << MAGENTA << "=== TEST 7: COPY CONSTRUCTOR ===" << RESET << std::endl;
-	ClapTrap clap3("Charlie");
+	ClapTrap clap3("ToBeCopied");
 	clap3.attack("an enemy");
 	std::cout << "[ Calling copy constructor ] " << RESET;
 	ClapTrap clap4(clap3);
@@ -69,9 +67,10 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << MAGENTA << "=== TEST 8: ASSIGNMENT OPERATOR ===" << RESET << std::endl;
-	ClapTrap clap5("David");
-	ClapTrap clap6("Eve");
-	clap6 = clap5;  // Assignment operator
+	ClapTrap clap5("Original");
+	ClapTrap clap6("Assigned Copy");
+	clap5.takeDamage(2);
+	clap6 = clap5;
 	clap6.attack("an enemy");
 	std::cout << std::endl;
 

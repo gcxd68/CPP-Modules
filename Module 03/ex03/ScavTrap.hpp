@@ -1,51 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 11:13:11 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 12:31:19 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/07 14:25:54 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/10 14:01:47 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-# include <string>
+# include "ClapTrap.hpp"
 
-class ClapTrap {
+class ScavTrap : public virtual ClapTrap {
 
 public:
 
 	// Default constructor
-	ClapTrap(void);
+	ScavTrap(void);
 
 	// Parameterized constructor
-	ClapTrap(const std::string& name);
+	ScavTrap(const std::string& name);
 
 	// Copy constructor
-	ClapTrap(const ClapTrap& other);
+	ScavTrap(const ScavTrap& other);
 
 	// Copy assignment operator
-	ClapTrap&	operator=(const ClapTrap& other);
+	ScavTrap&	operator=(const ScavTrap& other);
 
 	// Destructor
-	~ClapTrap(void);
+	~ScavTrap(void);
 
 	// Member function(s)
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
-
-private:
-
-	//Attribute(s)
-	std::string		_name;
-	unsigned int	_hitPoints;
-	unsigned int	_energyPoints;
-	unsigned int	_attackDamage;
+	void	attack(const std::string& target); // override
+	void	guardGate(void);
 
 };
 

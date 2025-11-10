@@ -1,51 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 11:13:11 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 12:31:19 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/10 10:20:44 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/10 14:07:00 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-# include <string>
+# include "ClapTrap.hpp"
 
-class ClapTrap {
+class FragTrap : public virtual ClapTrap {
 
 public:
 
 	// Default constructor
-	ClapTrap(void);
+	FragTrap(void);
 
 	// Parameterized constructor
-	ClapTrap(const std::string& name);
+	FragTrap(const std::string& name);
 
 	// Copy constructor
-	ClapTrap(const ClapTrap& other);
+	FragTrap(const FragTrap& other);
 
 	// Copy assignment operator
-	ClapTrap&	operator=(const ClapTrap& other);
+	FragTrap&	operator=(const FragTrap& other);
 
 	// Destructor
-	~ClapTrap(void);
+	~FragTrap(void);
 
 	// Member function(s)
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
-
-private:
-
-	//Attribute(s)
-	std::string		_name;
-	unsigned int	_hitPoints;
-	unsigned int	_energyPoints;
-	unsigned int	_attackDamage;
+	void	highFivesGuys(void);
 
 };
 

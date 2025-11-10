@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:13:11 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 12:31:19 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/07 14:43:58 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ public:
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
 
-private:
+protected:
 
 	//Attribute(s)
 	std::string		_name;
