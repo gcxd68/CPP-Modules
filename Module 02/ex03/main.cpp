@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdosch <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:17:02 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/01 15:17:03 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/10 15:33:22 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int main() {
 	Point vertex(0.f, 0.f);
 	Point edge(5.f, 0.f);
 	std::cout << std::boolalpha;
-	std::cout << "inside:  " << bsp(a, b, c, inside) << '\n';   // attendu: true
-	std::cout << "outside: " << bsp(a, b, c, outside) << '\n';  // attendu: false
-	std::cout << "vertex:  " << bsp(a, b, c, vertex) << '\n';   // attendu: false (sur un sommet)
-	std::cout << "edge:    " << bsp(a, b, c, edge) << '\n';     // attendu: false (sur un côté)
+	std::cout << "inside (1.0, 1.0):\t" << bsp(a, b, c, inside) << "\t(should be true)" << std::endl;
+	std::cout << "outside: (10.0, 10.0):\t" << bsp(a, b, c, outside) << "\t(should be false)" << std::endl;
+	std::cout << "vertex (0.0, 0.0):\t" << bsp(a, b, c, vertex) << "\t(should be false)" << std::endl;
+	std::cout << "edge: (5.0, 0.0):\t" << bsp(a, b, c, edge) << "\t(should be false)" << std::endl;
 }

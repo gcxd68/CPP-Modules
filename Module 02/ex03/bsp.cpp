@@ -13,8 +13,8 @@
 #include "Point.hpp"
 
 static Fixed orientedArea(const Point& p1, const Point& p2, const Point& p3) {
-	return (p1.getX() - p3.getX()) * (p2.getY() - p3.getY())
-		 - (p2.getX() - p3.getX()) * (p1.getY() - p3.getY());
+	return (p2.getX() - p1.getX()) * (p3.getY() - p1.getY())
+		- (p3.getX() - p1.getX()) * (p2.getY() - p1.getY());
 }
 
 bool bsp(Point const a, Point const b, Point const c, Point const point) {

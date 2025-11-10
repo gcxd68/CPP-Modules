@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdosch <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:17:20 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/01 15:17:21 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/10 14:56:49 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,15 @@ Fixed::Fixed(const float value) : _value(roundf(value * (1 << _fractionalBits)))
 
 // Copy constructor
 Fixed::Fixed(const Fixed& other) {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 // Copy assignment operator
 Fixed& Fixed::operator=(const Fixed& other) {
-	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &other) {
+	if (this != &other)
 		this->_value = other.getRawBits();
-	}
+	std::cout << "Copy assignment operator called" << std::endl;
 	return *this;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdosch <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:17:20 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/01 15:17:21 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/10 14:51:34 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ Fixed::Fixed(const Fixed& other) {
 
 // Copy assignment operator
 Fixed& Fixed::operator=(const Fixed& other) {
-	if (this != &other) {
+	if (this != &other)
 		this->_value = other.getRawBits();
-	}
 	return *this;
 }
 
