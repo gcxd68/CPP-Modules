@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:13:11 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 12:31:19 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/11 13:58:06 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,35 @@
 
 class ClapTrap {
 
-public:
+	public:
 
-	// Default constructor
-	ClapTrap(void);
+		// Default constructor
+		ClapTrap(void);
 
-	// Parameterized constructor
-	ClapTrap(const std::string& name);
+		// Parameterized constructor
+		ClapTrap(const std::string& name);
 
-	// Copy constructor
-	ClapTrap(const ClapTrap& other);
+		// Copy constructor
+		ClapTrap(const ClapTrap& other);
 
-	// Copy assignment operator
-	ClapTrap&	operator=(const ClapTrap& other);
+		// Copy assignment operator
+		ClapTrap&	operator=(const ClapTrap& other);
 
-	// Destructor
-	~ClapTrap(void);
+		// Destructor
+		~ClapTrap(void);
 
-	// Member function(s)
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+		// Member function(s)
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 
-private:
+	private:
 
-	//Attribute(s)
-	std::string		_name;
-	unsigned int	_hitPoints;
-	unsigned int	_energyPoints;
-	unsigned int	_attackDamage;
+		//Attribute(s)
+		std::string		_name;
+		unsigned int	_hitPoints;
+		unsigned int	_energyPoints;
+		unsigned int	_attackDamage;
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 14:25:54 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 13:44:18 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/11 13:58:20 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@
 
 class ScavTrap : public ClapTrap {
 
-public:
+	public:
 
-	// Default constructor
-	ScavTrap(void);
+		// Default constructor
+		ScavTrap(void);
 
-	// Parameterized constructor
-	ScavTrap(const std::string& name);
+		// Parameterized constructor
+		ScavTrap(const std::string& name);
 
-	// Copy constructor
-	ScavTrap(const ScavTrap& other);
+		// Copy constructor
+		ScavTrap(const ScavTrap& other);
 
-	// Copy assignment operator
-	ScavTrap&	operator=(const ScavTrap& other);
+		// Copy assignment operator
+		ScavTrap&	operator=(const ScavTrap& other);
 
-	// Destructor
-	~ScavTrap(void);
+		// Destructor
+		~ScavTrap(void);
 
-	// Member function(s)
-	void	attack(const std::string& target); // override
-	void	guardGate(void);
+		// Member function(s)
+		void	attack(const std::string& target); // override
+		void	guardGate(void);
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 10:20:40 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 13:59:15 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/11 17:53:08 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 // Default constructor
 FragTrap::FragTrap(void) : ClapTrap() {
+	std::cout << "FragTrap default constructor called" << std::endl;
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
-	std::cout << "FragTrap default constructor called" << std::endl;
 }
 
 // Parameterized constructor
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
+	std::cout << "FragTrap " << this->_name << " constructor called" << std::endl;
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
-	std::cout << "FragTrap " << this->_name << " constructor called" << std::endl;
 }
 
 // Copy constructor
@@ -36,9 +36,9 @@ FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {
 
 // Copy assignment operator
 FragTrap& FragTrap::operator=(const FragTrap& other) {
+	std::cout << "FragTrap copy assignment operator called" << std::endl;
 	if (this != &other)
 		ClapTrap::operator=(other);
-	std::cout << "FragTrap copy assignment operator called" << std::endl;
 	return *this;
 }
 

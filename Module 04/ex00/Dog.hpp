@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/11 09:17:43 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/11 13:57:11 by gdosch           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DOG_HPP
+# define DOG_HPP
+
+# include "Animal.hpp"
+# include <string>
+
+class Dog : public Animal {
+
+	public:
+
+		// Default constructor
+		Dog(void);
+
+		// Parameterized constructor
+		Dog(const std::string& type);
+
+		// Copy constructor
+		Dog(const Dog& other);
+
+		// Copy assignment operator
+		Dog& operator=(const Dog& other);
+
+		// Destructor
+		~Dog(void);
+
+		// Member function(s)
+		void makeSound() const;
+
+};
+
+#endif

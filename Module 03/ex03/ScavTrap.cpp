@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 14:25:48 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 13:56:28 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/11 17:55:57 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 // Default constructor
 ScavTrap::ScavTrap(void) : ClapTrap() {
+	std::cout << "ScavTrap default constructor called" << std::endl;
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
-	std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
 // Parameterized constructor
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
+	std::cout << "ScavTrap " << this->_name << " constructor called" << std::endl;
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
-	std::cout << "ScavTrap " << this->_name << " constructor called" << std::endl;
 }
 
 // Copy constructor
@@ -36,9 +36,9 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
 
 // Copy assignment operator
 ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	if (this != &other)
 		ClapTrap::operator=(other);
-	std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	return *this;
 }
 

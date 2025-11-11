@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:14:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 14:18:38 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/11 17:53:59 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ DiamondTrap::DiamondTrap(void)
 	, ScavTrap()
 	, _name("Unnamed")
 {
+	std::cout << "DiamondTrap default constructor called" << std::endl;
 	this->_hitPoints = FragTrap::_hitPoints;
 	this->_energyPoints = ScavTrap::_energyPoints;
 	this->_attackDamage = FragTrap::_attackDamage;
-	std::cout << "DiamondTrap default constructor called" << std::endl;
 }
 
 // Parameterized constructor
@@ -33,10 +33,10 @@ DiamondTrap::DiamondTrap(const std::string& name)
 	, ScavTrap(name)
 	, _name(name)
 {
+	std::cout << "DiamondTrap " << this->_name << " constructor called" << std::endl;
 	this->_hitPoints = FragTrap::_hitPoints;
 	this->_energyPoints = ScavTrap::_energyPoints;
 	this->_attackDamage = FragTrap::_attackDamage;
-	std::cout << "DiamondTrap " << this->_name << " constructor called" << std::endl;
 }
 
 // Copy constructor
@@ -51,11 +51,11 @@ DiamondTrap::DiamondTrap(const DiamondTrap& other)
 
 // Copy assignment operator
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
+	std::cout << "DiamondTrap copy assignment operator called" << std::endl;
 	if (this != &other) {
 		ClapTrap::operator=(other);
 		this->_name = other._name;
 	}
-	std::cout << "DiamondTrap copy assignment operator called" << std::endl;
 	return *this;
 }
 
