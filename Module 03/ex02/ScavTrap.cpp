@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 14:25:48 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 17:53:24 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/13 11:38:17 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 // Default constructor
 ScavTrap::ScavTrap(void) : ClapTrap() {
 	std::cout << "ScavTrap default constructor called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
+	this->_hitPoints = DEFAULT_HIT_POINTS;
+	this->_energyPoints = DEFAULT_ENERGY_POINTS;
+	this->_attackDamage = DEFAULT_ATTACK_DAMAGE;
 }
 
 // Parameterized constructor
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
 	std::cout << "ScavTrap " << this->_name << " constructor called" << std::endl;
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
+	this->_hitPoints = DEFAULT_HIT_POINTS;
+	this->_energyPoints = DEFAULT_ENERGY_POINTS;
+	this->_attackDamage = DEFAULT_ATTACK_DAMAGE;
 }
 
 // Copy constructor

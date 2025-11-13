@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 14:25:54 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 13:58:57 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/13 11:56:25 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ScavTrap : public virtual ClapTrap {
 		ScavTrap(const ScavTrap& other);
 
 		// Copy assignment operator
-		ScavTrap&	operator=(const ScavTrap& other);
+		ScavTrap& operator=(const ScavTrap& other);
 
 		// Destructor
 		~ScavTrap(void);
@@ -37,6 +37,13 @@ class ScavTrap : public virtual ClapTrap {
 		// Member function(s)
 		void	attack(const std::string& target); // override
 		void	guardGate(void);
+
+	protected:
+
+		// Constant(s)
+		static const unsigned int	DEFAULT_HIT_POINTS = 100;
+		static const unsigned int	DEFAULT_ENERGY_POINTS = 50;
+		static const unsigned int	DEFAULT_ATTACK_DAMAGE = 20;
 
 };
 

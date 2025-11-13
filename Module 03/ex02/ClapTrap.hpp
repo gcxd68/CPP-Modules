@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:13:11 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 13:58:25 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/13 11:54:53 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ClapTrap {
 		ClapTrap(const ClapTrap& other);
 
 		// Copy assignment operator
-		ClapTrap&	operator=(const ClapTrap& other);
+		ClapTrap& operator=(const ClapTrap& other);
 
 		// Destructor
 		~ClapTrap(void);
@@ -40,6 +40,11 @@ class ClapTrap {
 		void	beRepaired(unsigned int amount);
 
 	protected:
+
+		// Constant(s)
+		static const unsigned int	DEFAULT_HIT_POINTS = 10;
+		static const unsigned int	DEFAULT_ENERGY_POINTS = 10;
+		static const unsigned int	DEFAULT_ATTACK_DAMAGE = 0;
 
 		//Attribute(s)
 		std::string		_name;

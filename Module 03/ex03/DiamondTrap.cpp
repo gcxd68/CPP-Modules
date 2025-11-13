@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:14:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 17:53:59 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/13 12:58:22 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@
 // Default constructor
 DiamondTrap::DiamondTrap(void)
 	: ClapTrap("Unnamed_clap_name")
-	, FragTrap()
-	, ScavTrap()
+	// , FragTrap()
+	// , ScavTrap()
 	, _name("Unnamed")
 {
 	std::cout << "DiamondTrap default constructor called" << std::endl;
-	this->_hitPoints = FragTrap::_hitPoints;
-	this->_energyPoints = ScavTrap::_energyPoints;
-	this->_attackDamage = FragTrap::_attackDamage;
+	this->_hitPoints = FragTrap::DEFAULT_HIT_POINTS;
+	this->_energyPoints = ScavTrap::DEFAULT_ENERGY_POINTS;
+	this->_attackDamage = FragTrap::DEFAULT_ATTACK_DAMAGE;
 }
 
 // Parameterized constructor
 DiamondTrap::DiamondTrap(const std::string& name)
 	: ClapTrap(name + "_clap_name")
-	, FragTrap(name)
-	, ScavTrap(name)
+	// , FragTrap(name)
+	// , ScavTrap(name)
 	, _name(name)
 {
 	std::cout << "DiamondTrap " << this->_name << " constructor called" << std::endl;
-	this->_hitPoints = FragTrap::_hitPoints;
-	this->_energyPoints = ScavTrap::_energyPoints;
-	this->_attackDamage = FragTrap::_attackDamage;
+	this->_hitPoints = FragTrap::DEFAULT_HIT_POINTS;
+	this->_energyPoints = ScavTrap::DEFAULT_ENERGY_POINTS;
+	this->_attackDamage = FragTrap::DEFAULT_ATTACK_DAMAGE;
 }
 
 // Copy constructor

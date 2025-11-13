@@ -6,12 +6,10 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:13:03 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/10 13:58:06 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/13 11:05:48 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 #include <iostream>
 
