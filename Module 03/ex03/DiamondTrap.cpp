@@ -38,8 +38,6 @@ DiamondTrap::DiamondTrap(const std::string& name)
 // Copy constructor
 DiamondTrap::DiamondTrap(const DiamondTrap& other)
 	: ClapTrap(other)
-	, FragTrap(other)
-	, ScavTrap(other)
 	, _name(other._name)
 {
 	std::cout << "DiamondTrap copy constructor called for " << this->_name << std::endl;
@@ -62,6 +60,8 @@ DiamondTrap::~DiamondTrap(void) {
 
 // Member function(s)
 void DiamondTrap::whoAmI(void) {
-	std::cout << "I am DiamondTrap " << this->_name 
-		<< " and my ClapTrap name is " << ClapTrap::_name << std::endl;
+	std::cout
+		<< "I am DiamondTrap " << this->_name 
+		<< " and my ClapTrap name is " << ClapTrap::_name
+		<< std::endl;
 }

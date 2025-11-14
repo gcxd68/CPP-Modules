@@ -46,7 +46,7 @@ class ClapTrap {
 		static const unsigned int	DEFAULT_ENERGY_POINTS = 10;
 		static const unsigned int	DEFAULT_ATTACK_DAMAGE = 0;
 
-		//Attribute(s)
+		// Attribute(s)
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;

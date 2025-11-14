@@ -35,7 +35,7 @@ class ScavTrap : public virtual ClapTrap {
 		~ScavTrap(void);
 
 		// Member function(s)
-		void	attack(const std::string& target); // override
+		void	attack(const std::string& target); // Override
 		void	guardGate(void);
 
 	protected:

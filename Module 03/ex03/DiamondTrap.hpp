@@ -43,7 +43,8 @@ class DiamondTrap : public FragTrap, public ScavTrap {
 
 	private:
 
-		std::string	_name;  // Nom propre du DiamondTrap
+		// Attribute(s)
+		std::string	_name;
 
 };
 
