@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:55:37 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 16:48:50 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/16 19:58:38 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <string>
 
-// Forward declaration
+// Forward declaration(s)
 class AMateria;
 
 // Interface

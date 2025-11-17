@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:43 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 17:25:40 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/17 14:10:56 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,25 @@
 # define MATERIASOURCE_HPP
 
 # include "IMateriaSource.hpp"
-# include "AMateria.hpp"
+# include <string>
+
+// Forward declaration(s)
+class AMateria;
 
 class MateriaSource : public IMateriaSource {
 
 	private:
 
+		// Constant(s)
 		static const int	MAX_TEMPLATES = 4;
+
+		// Attribute(s)
 		AMateria*			_templates[MAX_TEMPLATES];
 
 	public:
 
 		// Default constructor
-		MateriaSource();
+		MateriaSource(void);
 
 		// Copy constructor
 		MateriaSource(const MateriaSource& other);
@@ -38,8 +44,8 @@ class MateriaSource : public IMateriaSource {
 		virtual ~MateriaSource();
 
 		// Interface implementation
-		virtual void learnMateria(AMateria* m);
-		virtual AMateria* createMateria(std::string const& type);
+		virtual void learnMateria(AMateria*);
+		virtual AMateria* createMateria(std::string const & type);
 
 };
 

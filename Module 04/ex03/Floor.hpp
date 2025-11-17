@@ -1,39 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.hpp                                            :+:      :+:    :+:   */
+/*   Floor.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 15:27:44 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/17 13:36:11 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/16 18:54:03 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/17 13:50:53 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICE_HPP
-# define ICE_HPP
+#ifndef FLOOR_HPP
+# define FLOOR_HPP
 
-# include "AMateria.hpp"
+class AMateria;
 
-class Ice : public AMateria {
+class Floor {
+
+	private:
+
+		// Default constructor
+		Floor();
+
+		// Copy constructor
+		Floor(const Floor& other);
+
+		// Copy assignment operator
+		Floor& operator=(const Floor& other);
+
+		// Destructor
+		~Floor();
+
+		// Constant(s)
+		static const int MAX_ITEMS = 1024;
+
+		// Attribute(s)
+		AMateria*	_items[MAX_ITEMS];
+		int			_count;
 
 	public:
 
-		// Default constructor
-		Ice(void);
-		
-		// Copy constructor
-		Ice(const Ice& other);
-
-		// Copy assignment operator
-		Ice& operator=(const Ice& other);
-
-		// Destructor
-		virtual ~Ice(void);
+		// Accessor(s)
+		static Floor& getInstance();
 
 		// Core method(s)
-		virtual AMateria* clone() const;
-		virtual void use(ICharacter& target);
+		void add(AMateria* m);
 
 };
 

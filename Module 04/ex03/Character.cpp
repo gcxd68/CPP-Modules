@@ -6,30 +6,33 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:56:19 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 17:28:11 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/17 14:48:24 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include "AMateria.hpp"
+#include "Floor.hpp"
 #include <iostream>
+#include <string>
 
 // Default constructor
-Character::Character() : _name("unnamed") {
-	std::cout << "Character default constructor called" << std::endl;
+Character::Character(void) : _name("unnamed") {
+	// std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < MAX_SLOTS; i++)
 		_inventory[i] = NULL;
 }
 
 // Parameterized constructor
-Character::Character(std::string const& name) : _name(name) {
-	std::cout << "Character constructor called: " << name << std::endl;
+Character::Character(const std::string& name) : _name(name) {
+	// std::cout << "Character parameterized constructor called: " << name << std::endl;
 	for (int i = 0; i < MAX_SLOTS; i++)
 		_inventory[i] = NULL;
 }
 
 // Copy constructor
 Character::Character(const Character& other) : _name(other._name) {
-	std::cout << "Character copy constructor called" << std::endl;
+	// std::cout << "Character copy constructor called" << std::endl;
 	for (int i = 0; i < MAX_SLOTS; i++) {
 		if (other._inventory[i])
 			_inventory[i] = other._inventory[i]->clone();
@@ -40,7 +43,7 @@ Character::Character(const Character& other) : _name(other._name) {
 
 // Copy assignment operator
 Character& Character::operator=(const Character& other) {
-	std::cout << "Character assignment operator called" << std::endl;
+	// std::cout << "Character assignment operator called" << std::endl;
 	if (this != &other) {
 		_name = other._name;
 		for (int i = 0; i < MAX_SLOTS; i++) {
@@ -61,7 +64,7 @@ Character& Character::operator=(const Character& other) {
 
 // Destructor
 Character::~Character() {
-	std::cout << "Character destructor called: " << _name << std::endl;
+	// std::cout << "Character destructor called: " << _name << std::endl;
 	for (int i = 0; i < MAX_SLOTS; i++) {
 		if (_inventory[i])
 			delete _inventory[i];
@@ -82,41 +85,37 @@ void Character::equip(AMateria* m) {
 	for (int i = 0; i < MAX_SLOTS; i++) {
 		if (!_inventory[i]) {
 			_inventory[i] = m;
-			std::cout << _name << " equipped " << m->getType() 
-					  << " in slot " << i << std::endl;
+			std::cout
+				<< _name << " equipped '" << m->getType()
+				<< "' materia in slot " << i << std::endl;
 			return;
 		}
 	}
-	std::cout << _name << "'s inventory is full, cannot equip " 
-			  << m->getType() << std::endl;
+	std::cout
+		<< _name << "'s inventory is full, cannot equip '"
+		<< m->getType() << "' materia" << std::endl;
+	Floor::getInstance().add(m);
 }
 
 void Character::unequip(int idx) {
-	if (idx < 0 || idx >= MAX_SLOTS) {
-		std::cout << _name << " tried to unequip invalid slot: " 
-				  << idx << std::endl;
-		return;
+	if (idx < 0 || idx >= MAX_SLOTS)
+		std::cout << _name << " tried to unequip invalid slot " << idx << std::endl;
+	else if (!_inventory[idx])
+		std::cout << _name << " tried to unequip empty slot " << idx << std::endl;
+	else {
+		std::cout
+			<< _name << " unequipped '" << _inventory[idx]->getType()
+			<< "' materia from slot " << idx << std::endl;
+		Floor::getInstance().add(_inventory[idx]);
+		_inventory[idx] = NULL;
 	}
-	if (!_inventory[idx]) {
-		std::cout << _name << " tried to unequip empty slot: " 
-				  << idx << std::endl;
-		return;
-	}
-	std::cout << _name << " unequipped " << _inventory[idx]->getType() 
-			  << " from slot " << idx << std::endl;
-	_inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target) {
-	if (idx < 0 || idx >= MAX_SLOTS) {
-		std::cout << _name << " tried to use invalid slot: " 
-				  << idx << std::endl;
-		return;
-	}
-	if (!_inventory[idx]) {
-		std::cout << _name << " tried to use empty slot: " 
-				  << idx << std::endl;
-		return;
-	}
-	_inventory[idx]->use(target);
+	if (idx < 0 || idx >= MAX_SLOTS)
+		std::cout << _name << " tried to use invalid slot: " << idx << std::endl;
+	else if (!_inventory[idx])
+		std::cout << _name << " tried to use empty slot: " << idx << std::endl;
+	else
+		_inventory[idx]->use(target);
 }

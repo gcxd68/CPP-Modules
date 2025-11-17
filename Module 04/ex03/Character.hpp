@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:56:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 17:26:08 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/17 13:47:07 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 # define CHARACTER_HPP
 
 # include "ICharacter.hpp"
-# include "AMateria.hpp"
+# include <string>
+
+// Forward declaration(s)
+class AMateria;
 
 class Character : public ICharacter {
 
 	private:
 
-		std::string			_name;
+		// Constant(s)
 		static const int	MAX_SLOTS = 4;
+
+		// Attribute(s)
 		AMateria*			_inventory[MAX_SLOTS];
+		std::string			_name;
 
 	public:
 
 		// Default constructor
-		Character();
+		Character(void);
 
 		// Parameterized constructor
-		Character(std::string const& name);
+		Character(const std::string& name);
 
 		// Copy constructor
 		Character(const Character& other);
@@ -42,9 +48,9 @@ class Character : public ICharacter {
 		virtual ~Character();
 
 		// Accessor(s)
-		virtual std::string const& getName() const;
+		virtual std::string const & getName() const;
 
-		// Core method(s)
+		// Interface implementation
 		virtual void equip(AMateria* m);
 		virtual void unequip(int idx);
 		virtual void use(int idx, ICharacter& target);

@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:28:28 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 17:28:43 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/17 13:35:37 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 #include <iostream>
 
 // Default constructor
-Ice::Ice() : AMateria("ice") {
-	std::cout << "Ice constructor called" << std::endl;
+Ice::Ice(void) : AMateria("ice") {
+	// std::cout << "Ice constructor called" << std::endl;
 }
 
 // Copy constructor
 Ice::Ice(const Ice& other) : AMateria(other) {
-	std::cout << "Ice copy constructor called" << std::endl;
+	// std::cout << "Ice copy constructor called" << std::endl;
 }
 
 // Copy assignment operator
 Ice& Ice::operator=(const Ice& other) {
-	std::cout << "Ice assignment operator called" << std::endl;
+	// std::cout << "Ice assignment operator called" << std::endl;
 	AMateria::operator=(other);
 	return *this;
 }
 
 // Destructor
-Ice::~Ice() {
-	std::cout << "Ice destructor called" << std::endl;
+Ice::~Ice(void) {
+	// std::cout << "Ice destructor called" << std::endl;
 }
 
 // Core method(s)

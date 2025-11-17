@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:43:53 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 16:36:26 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/17 13:33:47 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Cure : public AMateria {
 	public:
 
 		// Default constructor
-		Cure();
+		Cure(void);
 
 		// Copy constructor
 		Cure(const Cure& other);
@@ -29,7 +29,7 @@ class Cure : public AMateria {
 		Cure& operator=(const Cure& other);
 
 		// Destructor
-		virtual ~Cure();
+		virtual ~Cure(void);
 
 		// Core method(s)
 		virtual AMateria* clone() const;

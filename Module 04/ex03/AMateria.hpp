@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:14:54 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 16:52:08 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/17 13:34:01 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ class ICharacter;
 
 class AMateria
 {
-
 	protected:
 
 		// Attribute(s)
@@ -29,7 +28,7 @@ class AMateria
 	public:
 
 		// Default constructor
-		AMateria();
+		AMateria(void);
 
 		// Parameterized constructor
 		AMateria(std::string const & type);
@@ -41,15 +40,12 @@ class AMateria
 		AMateria& operator=(const AMateria& other);
 
 		// Destructor
-		virtual ~AMateria();
+		virtual ~AMateria(void);
 
-		// Accessor(s)
 		std::string const & getType() const; //Returns the materia type
 
-		// Core method(s)
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
-
 };
 
 #endif

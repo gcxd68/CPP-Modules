@@ -6,7 +6,7 @@
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 09:17:46 by gdosch            #+#    #+#              #
-#    Updated: 2025/11/11 16:02:03 by gdosch           ###   ########.fr        #
+#    Updated: 2025/11/17 13:55:49 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS			= main.cpp \
 				Ice.cpp \
 				Cure.cpp \
 				Character.cpp \
-				MateriaSource.cpp
+				MateriaSource.cpp \
+				Floor.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 

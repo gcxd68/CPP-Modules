@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 10:30:32 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/11 13:57:05 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/16 10:21:45 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class WrongAnimal {
 		WrongAnimal& operator=(const WrongAnimal& other);
 
 		// Destructor
-		~WrongAnimal(void);
+		virtual ~WrongAnimal(void);
 
 		// Accessor(s)
 		std::string	getType() const;
