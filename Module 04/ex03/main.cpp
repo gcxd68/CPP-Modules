@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:53:39 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/17 15:23:26 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/18 11:37:53 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int main()
 		character->equip(new Ice());
 		character->equip(new Cure());
 		
-		std::cout << "[ Inventory full ]" << std::endl;
+		std::cout << "[ Trying to equip a 5th materia in full inventory ]" << std::endl;
 		AMateria* overflow = new Ice();
 		character->equip(overflow);
 
@@ -71,20 +71,20 @@ int main()
 	{
 		std::cout << std::endl << MAGENTA << "=== TEST DEEP COPY CHARACTER ===" << RESET << std::endl;
 		
-		Character* original = new Character("Original");
+		Character* original = new Character("Clone");
 		original->equip(new Ice());
 		original->equip(new Cure());
 
 		Character* copy = new Character(*original);
-		std::cout << "[ Original was copied ; copy owns its own cloned materias ] " << std::endl;
+		std::cout << "[ Original Clone was copied ; replica Clone owns its own cloned materias ]" << std::endl;
 
-		std::cout << "[ Original uses slot 0 on copy ] ";
+		std::cout << "[ Original Clone uses slot 0 on replica Clone ] ";
 		original->use(0, *copy);
-		std::cout << "[ Copy uses slot 0 on original ] ";
+		std::cout << "[ Replica Clone uses slot 0 on original Clone ] ";
 		copy->use(0, *original);
 
 		delete original;
-		std::cout << "[ Copy still alive after original destroyed ] ";
+		std::cout << "[ Replica Clone still alive after original Clone destroyed ] ";
 		copy->use(1, *copy);
 		
 		delete copy;
@@ -97,26 +97,34 @@ int main()
 		src->learnMateria(new Cure());
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
-		std::cout << "[ MateriaSource full ]" << std::endl;
+
+		std::cout << "[ Full MateriaSource tries to learn a 5th template ]" << std::endl;
 		src->learnMateria(new Ice());
 
+		std::cout << "[ MateriaSource creates ice & cure materias ]" << std::endl;
 		AMateria* created_ice  = src->createMateria("ice");
 		AMateria* created_cure = src->createMateria("cure");
-		std::cout << "[ Trying to create an unknown type Materia ]" << std::endl;
+
+		std::cout << "[ MateriaSource tries to create a materia of an unknown type ]" << std::endl;
 		AMateria* unknown = src->createMateria("fire");
 		if (!unknown)
 			std::cout << "[ createMateria(\"fire\") returned NULL ]" << std::endl;
+		else {
+			std::cout << "[ createMateria(\"fire\") did not return NULL ]" << std::endl;
+			delete unknown;
+		}
 
 		delete created_ice;
 		delete created_cure;
-		if (unknown) delete unknown;
 
-		std::cout << std::endl << "[ Creating a deep copy of MateriaSource ]" << std::endl;
+		std::cout << "[ Creating a deep copy of MateriaSource ]" << std::endl;
 		MateriaSource* src2 = new MateriaSource(*src);
+
 		std::cout << "[ Original MateriaSource tries to create ice ] ";
 		AMateria* m1 = src->createMateria("ice");
 		std::cout << "[ Copy MateriaSource tries to create ice ] ";
 		AMateria* m2 = src2->createMateria("ice");
+
 		delete m1;
 		delete m2;
 
@@ -124,24 +132,24 @@ int main()
 		delete src;
 		std::cout << "[ Copy still alive after src destroyed ] ";
 		AMateria* m3 = src2->createMateria("ice");
+		
 		delete m3;
 		delete src2;
 	}
 	{
 		std::cout << std::endl << MAGENTA << "=== TEST ASSIGNMENT OPERATOR ===" << RESET << std::endl;
-
 		std::cout << "[ Creating and equiping Hero ]" << std::endl;
 		Character hero("Hero");
 		hero.equip(new Ice());
 		hero.equip(new Cure());
-		
+
 		std::cout << "[ Creating and equiping Villain ]" << std::endl;
 		Character villain("Villain");
-		villain.equip(new Ice());
-		
+		villain.equip(new Cure());
+
 		std::cout << "[ Assignment operator deletes Villain's old materias and deep copies Hero's ]" << std::endl;
 		villain = hero;
-		
+
 		std::cout << "[ Villain (copy of Hero) uses slot 0 ] ";
 		villain.use(0, hero);
 		std::cout << "[ Villain (copy of Hero) uses slot 1 ] ";

@@ -35,9 +35,9 @@ Cat::Cat(const Cat& other) : AAnimal(other) {
 Cat& Cat::operator=(const Cat& other) {
 	std::cout << "Cat copy assignment operator called" << std::endl;
 	if (this != &other) {
+		AAnimal::operator=(other);
 		delete this->_brain;
 		this->_brain = new Brain(*other._brain);
-		this->type = other.type;
 	}
 	return *this;
 }

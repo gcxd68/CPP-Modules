@@ -32,7 +32,7 @@ class WrongAnimal {
 		WrongAnimal& operator=(const WrongAnimal& other);
 
 		// Destructor
-		~WrongAnimal(void);
+		virtual ~WrongAnimal(void);
 
 		// Accessor(s)
 		std::string	getType() const;

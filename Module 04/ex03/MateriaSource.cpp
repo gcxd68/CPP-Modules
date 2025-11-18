@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:25 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/17 15:02:23 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/18 11:33:25 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,5 @@ AMateria* MateriaSource::createMateria(std::string const & type) {
 		}
 	}
 	std::cout << "MateriaSource cannot create materia of unknown type '" << type << "'" << std::endl;
-	return NULL;
+	return 0;
 }
