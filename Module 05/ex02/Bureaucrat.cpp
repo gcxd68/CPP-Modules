@@ -6,11 +6,12 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:02 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 12:59:09 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:57:58 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 #include <exception>
 #include <iostream>
 #include <string>
@@ -49,7 +50,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	if (this != &other)
 		this->_grade = other._grade;
 	return *this;
-}
+}	
 
 // Destructor
 Bureaucrat::~Bureaucrat(void) {
@@ -80,12 +81,34 @@ void Bureaucrat::decrementGrade(void) {
 	this->_grade++;
 }
 
+void Bureaucrat::signForm(AForm& form) {
+	try {
+		form.beSigned(*this);
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << this->_name << " couldn't sign " << form.getName() 
+			<< " because " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const & form) const {
+    try {
+        form.execute(*this);
+        std::cout << _name << " executed " << form.getName() << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout << _name << " couldn't execute " << form.getName() 
+            << " because " << e.what() << std::endl;
+    }
+}
+
 // Exception implementation(s)
-const char*	Bureaucrat::GradeTooHighException::what() const throw() {
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade is too high!";
 }
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw() {
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Grade is too low!";
 }
 

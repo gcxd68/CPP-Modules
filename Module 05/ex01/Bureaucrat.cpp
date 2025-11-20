@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:02 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 11:52:03 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:05:26 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@
 #include <string>
 
 // Default constructor
-Bureaucrat::Bureaucrat(void) : _name("Default"), _grade(150) {
+Bureaucrat::Bureaucrat(void)
+	: _name("Unknown")
+	, _grade(150)
+{
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 }
 
 // Parameterized constructor
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name) {
+Bureaucrat::Bureaucrat(const std::string& name, int grade)
+	: _name(name)
+{
 	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
 	if (grade < 1)
 		throw GradeTooHighException();
@@ -32,7 +37,10 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name) {
 }
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade) {
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
+	: _name(other._name)
+	, _grade(other._grade)
+{
 	std::cout << "Bureaucrat copy constructor called" << std::endl;
 }
 
@@ -42,7 +50,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	if (this != &other)
 		this->_grade = other._grade;
 	return *this;
-}
+}	
 
 // Destructor
 Bureaucrat::~Bureaucrat(void) {
@@ -50,51 +58,51 @@ Bureaucrat::~Bureaucrat(void) {
 }
 
 // Accessor(s)
-const std::string&	Bureaucrat::getName(void) const {
+const std::string& Bureaucrat::getName(void) const {
 	return this->_name;
 }
 
-unsigned int	Bureaucrat::getGrade(void) const {
+unsigned int Bureaucrat::getGrade(void) const {
 	return this->_grade;
 }
 
 // Core method(s)
-void	Bureaucrat::incrementGrade(void) {
+void Bureaucrat::incrementGrade(void) {
 	if (this->_grade <= 1)
 		throw GradeTooHighException();
 	std::cout << "Incrementing " << this->_name << "'s grade" << std::endl;
 	this->_grade--;
 }
 
-void	Bureaucrat::decrementGrade(void) {
+void Bureaucrat::decrementGrade(void) {
 	if (this->_grade >= 150)
 		throw GradeTooLowException();
 	std::cout << "Decrementing " << this->_name << "'s grade" << std::endl;
 	this->_grade++;
 }
 
-void	Bureaucrat::signForm(Form& f) {
+void Bureaucrat::signForm(Form& form) {
 	try {
-		f.beSigned(*this);
-		std::cout << this->_name << " signed " << f.getName() << std::endl;
+		form.beSigned(*this);
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << this->_name << " couldn't sign " << f.getName() 
-				  << " because " << e.what() << std::endl;
+		std::cout << this->_name << " couldn't sign " << form.getName() 
+			<< " because " << e.what() << std::endl;
 	}
 }
 
 // Exception implementation(s)
-const char*	Bureaucrat::GradeTooHighException::what() const throw() {
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade is too high!";
 }
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw() {
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Grade is too low!";
 }
 
 // Insertion operator overload
-std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
 	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return out;
 }

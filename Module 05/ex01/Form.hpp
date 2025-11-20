@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:13 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 11:53:57 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:40:44 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,37 @@ class Form {
 	private:
 
 		const std::string	_name;
-		bool				_is_signed;
-		const unsigned int	_required_sign_grade;
-		const unsigned int	_required_exec_grade;
+		bool				_isSigned;
+		const unsigned int	_requiredSignGrade;
+		const unsigned int	_requiredExecGrade;
 
 	public:
 
+		// Default constructor
 		Form(void);
 
+		// Parameterized constructor
 		Form(const std::string& name, unsigned int sign_req, unsigned int exec_req);
 
+		// Copy constructor
 		Form(const Form& other);
 
+		// Copy assignment operator
 		Form& operator=(const Form& other);
 
+		// Destructor
 		~Form(void);
 
+		// Accessor(s)
 		const std::string&	getName(void) const;
 		bool				getSignedStatus(void) const;
 		unsigned int		getRequiredSignGrade(void) const;
 		unsigned int		getRequiredExecGrade(void) const;
 
+		// Core method(s)
 		void				beSigned(const Bureaucrat& b);
 
+		// Exception class(es)
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
@@ -56,8 +64,10 @@ class Form {
 			public:
 				virtual const char* what() const throw();
 		};
+
 };
 
+// Overload of insertion operator
 std::ostream&	operator<<(std::ostream& os, const Form& f);
 
 #endif

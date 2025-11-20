@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:15 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 13:27:48 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:58:07 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(void)
+AForm::AForm(void)
 	: _name("unnamed")
 	, _isSigned(false)
 	, _requiredSignGrade(150)
 	, _requiredExecGrade(150)
 {
-	std::cout << "Form default constructor called" << std::endl;
+	std::cout << "AForm default constructor called" << std::endl;
 }
 
-Form::Form(const std::string& name, unsigned int sign_req, unsigned int exec_req) 
+AForm::AForm(const std::string& name, unsigned int sign_req, unsigned int exec_req) 
 	: _name(name)
 	, _isSigned(false)
 	, _requiredSignGrade(sign_req)
 	, _requiredExecGrade(exec_req)
 {
-	std::cout << "Form parameterized constructor called" << std::endl;
+	std::cout << "AForm parameterized constructor called" << std::endl;
 	if (sign_req < 1 || exec_req < 1)
 		throw GradeTooHighException();
 	if (sign_req > 150 || exec_req > 150)
 		throw GradeTooLowException();
 }
 
-Form::Form(const Form& other) 
+AForm::AForm(const AForm& other) 
 	: _name(other._name)
 	, _isSigned(other._isSigned)
 	, _requiredSignGrade(other._requiredSignGrade)
@@ -44,48 +44,52 @@ Form::Form(const Form& other)
 	std::cout << "Form copy constructor called" << std::endl;
 }
 
-Form& Form::operator=(const Form& other) {
+AForm& AForm::operator=(const AForm& other) {
 	std::cout << "Form assignment operator called" << std::endl;
 	if (this != &other)
 		this->_isSigned = other._isSigned;
 	return *this;
 }
 
-Form::~Form(void) {
+AForm::~AForm(void) {
 	std::cout << "Form destructor called" << std::endl;
 }
 
-const std::string& Form::getName(void) const {
+const std::string& AForm::getName(void) const {
 	return this->_name;
 }
 
-bool Form::getSignedStatus(void) const {
+bool AForm::getSignedStatus(void) const {
 	return this->_isSigned;
 }
 
-unsigned int Form::getRequiredSignGrade(void) const {
+unsigned int AForm::getRequiredSignGrade(void) const {
 	return this->_requiredSignGrade;
 }
 
-unsigned int Form::getRequiredExecGrade(void) const {
+unsigned int AForm::getRequiredExecGrade(void) const {
 	return this->_requiredExecGrade;
 }
 
-void Form::beSigned(const Bureaucrat& b) {
+void AForm::beSigned(const Bureaucrat& b) {
 	if (b.getGrade() > this->_requiredSignGrade)
 		throw GradeTooLowException();
 	this->_isSigned = true;
 }
 
-const char* Form::GradeTooHighException::what() const throw() {
+const char* AForm::GradeTooHighException::what() const throw() {
 	return "Form: grade requirement is too high!";
 }
 
-const char* Form::GradeTooLowException::what() const throw() {
+const char* AForm::GradeTooLowException::what() const throw() {
 	return "Form: grade requirement is too low!";
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& f) {
+const char* AForm::FormNotSignedException::what() const throw() {
+	return "Cannot execute: form is not signed";
+}
+
+std::ostream& operator<<(std::ostream& os, const AForm& f) {
 	os << "Form '" << f.getName() 
 		<< "' [Status: " << (f.getSignedStatus() ? "signed" : "unsigned")
 		<< ", Sign req: " << f.getRequiredSignGrade()

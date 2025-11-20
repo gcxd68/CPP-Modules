@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:04 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 11:53:33 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:12:49 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class Bureaucrat {
 		// Core method(s)
 		void	incrementGrade(void);
 		void	decrementGrade(void);
-		void	signForm(Form& f);
+		void	signForm(Form& form);
 
 		// Exception class(es)
 		class GradeTooHighException : public std::exception {

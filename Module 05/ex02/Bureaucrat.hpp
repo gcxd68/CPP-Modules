@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:04 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 13:00:09 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:44:06 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <exception>
 # include <iostream>
 # include <string>
+
+class AForm;
 
 class Bureaucrat {
 
@@ -49,6 +51,8 @@ class Bureaucrat {
 		// Core method(s)
 		void	incrementGrade(void);
 		void	decrementGrade(void);
+		void	signForm(AForm& form);
+		void	executeForm(AForm const & form) const;
 
 		// Exception class(es)
 		class GradeTooHighException : public std::exception {

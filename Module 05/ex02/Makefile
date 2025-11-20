@@ -6,16 +6,22 @@
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/18 12:58:09 by gdosch            #+#    #+#              #
-#    Updated: 2025/11/20 13:23:16 by gdosch           ###   ########.fr        #
+#    Updated: 2025/11/20 13:56:02 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= form
+NAME			= forms
 
 CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS			= main.cpp Bureaucrat.cpp Form.cpp
+SRCS			= main.cpp \
+				Bureaucrat.cpp \
+				AForm.cpp \
+				ShrubberyCreationForm.cpp \
+				RobotomyRequestForm.cpp \
+				PresidentialPardonForm.cpp
+				
 OBJS			= $(SRCS:.cpp=.o)
 
 all:			$(NAME)
