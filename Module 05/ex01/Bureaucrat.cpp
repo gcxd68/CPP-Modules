@@ -6,11 +6,12 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:02 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/18 12:58:02 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/20 11:52:03 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <exception>
 #include <iostream>
 #include <string>
@@ -70,6 +71,17 @@ void	Bureaucrat::decrementGrade(void) {
 		throw GradeTooLowException();
 	std::cout << "Decrementing " << this->_name << "'s grade" << std::endl;
 	this->_grade++;
+}
+
+void	Bureaucrat::signForm(Form& f) {
+	try {
+		f.beSigned(*this);
+		std::cout << this->_name << " signed " << f.getName() << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << this->_name << " couldn't sign " << f.getName() 
+				  << " because " << e.what() << std::endl;
+	}
 }
 
 // Exception implementation(s)

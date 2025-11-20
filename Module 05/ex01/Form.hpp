@@ -1,56 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 12:58:04 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 11:06:38 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/20 10:02:13 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/20 11:53:57 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
 # include <exception>
 # include <iostream>
 # include <string>
 
-class Bureaucrat {
+class Bureaucrat;
 
+class Form {
+	
 	private:
 
-		// Attribute(s)
 		const std::string	_name;
-		unsigned int		_grade;
+		bool				_is_signed;
+		const unsigned int	_required_sign_grade;
+		const unsigned int	_required_exec_grade;
 
 	public:
 
-		// Default constructor
-		Bureaucrat(void);
+		Form(void);
 
-		// Parameterized constructor
-		Bureaucrat(const std::string& name, int grade);
+		Form(const std::string& name, unsigned int sign_req, unsigned int exec_req);
 
-		// Copy constructor
-		Bureaucrat(const Bureaucrat& other);
+		Form(const Form& other);
 
-		// Copy assignment operator
-		Bureaucrat& operator=(const Bureaucrat& other);
+		Form& operator=(const Form& other);
 
-		// Destructor
-		~Bureaucrat(void);
+		~Form(void);
 
-		// Accessor(s)
 		const std::string&	getName(void) const;
-		unsigned int		getGrade(void) const;
+		bool				getSignedStatus(void) const;
+		unsigned int		getRequiredSignGrade(void) const;
+		unsigned int		getRequiredExecGrade(void) const;
 
-		// Core method(s)
-		void	incrementGrade(void);
-		void	decrementGrade(void);
+		void				beSigned(const Bureaucrat& b);
 
-		// Exception class(es)
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
@@ -60,10 +56,8 @@ class Bureaucrat {
 			public:
 				virtual const char* what() const throw();
 		};
-
 };
 
-// Overload of insertion operator
-std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+std::ostream&	operator<<(std::ostream& os, const Form& f);
 
 #endif
