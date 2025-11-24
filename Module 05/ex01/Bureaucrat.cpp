@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:02 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 13:05:26 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/24 15:35:54 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <exception>
 #include <iostream>
 #include <string>
+
+class Form;
 
 // Default constructor
 Bureaucrat::Bureaucrat(void)
@@ -88,7 +90,7 @@ void Bureaucrat::signForm(Form& form) {
 	}
 	catch (std::exception& e) {
 		std::cout << this->_name << " couldn't sign " << form.getName() 
-			<< " because " << e.what() << std::endl;
+			<< ": " << e.what() << std::endl;
 	}
 }
 

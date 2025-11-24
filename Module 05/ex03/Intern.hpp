@@ -1,47 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 13:36:11 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:14:39 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/24 15:48:51 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/24 15:50:28 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
 # include "AForm.hpp"
+# include <string>
 
-class ShrubberyCreationForm : public AForm {
+class Intern {
 
-	private:
-
-	
-		std::string _target;
-	
 	public:
-
 		// Default constructor
-		ShrubberyCreationForm(void);
-
-		// Parameterized constructor
-		ShrubberyCreationForm(const std::string& target);
+		Intern(void);
 
 		// Copy constructor
-		ShrubberyCreationForm(const ShrubberyCreationForm& other);
+		Intern(const Intern& other);
 
 		// Copy assignment operator
-		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+		Intern& operator=(const Intern& other);
 
 		// Destructor
-		~ShrubberyCreationForm(void);
+		~Intern(void);
 
-		// Core method(s)
-		void execute(Bureaucrat const & executor) const;
+		// Core method
+		AForm* makeForm(const std::string& formName, const std::string& target);
 
+	private:
+		// Helper methods for form creation
+		AForm* createShrubberyCreationForm(const std::string& target);
+		AForm* createRobotomyRequestForm(const std::string& target);
+		AForm* createPresidentialPardonForm(const std::string& target);
 };
 
 #endif

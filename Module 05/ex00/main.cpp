@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:06 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 11:11:20 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/24 15:19:03 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(void) {
 		std::cout << bob << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << MAGENTA << "\n=== Test 2: Grade too high ===" << RESET << std::endl;
@@ -32,7 +32,7 @@ int main(void) {
 		std::cout << alice << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << MAGENTA << "\n=== Test 3: Grade too low ===" << RESET << std::endl;
@@ -41,7 +41,7 @@ int main(void) {
 		std::cout << charlie << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << MAGENTA << "\n=== Test 4: Increment grade ===" << RESET << std::endl;
@@ -55,7 +55,7 @@ int main(void) {
 		std::cout << dave << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << MAGENTA << "\n=== Test 5: Decrement grade ===" << RESET << std::endl;
@@ -69,6 +69,6 @@ int main(void) {
 		std::cout << eve << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << "Exception: " << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 }

@@ -6,13 +6,14 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:15 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 13:27:48 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/24 12:16:49 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
+// Default constructor
 Form::Form(void)
 	: _name("unnamed")
 	, _isSigned(false)
@@ -22,6 +23,7 @@ Form::Form(void)
 	std::cout << "Form default constructor called" << std::endl;
 }
 
+// Parameterized constructor
 Form::Form(const std::string& name, unsigned int sign_req, unsigned int exec_req) 
 	: _name(name)
 	, _isSigned(false)
@@ -35,6 +37,7 @@ Form::Form(const std::string& name, unsigned int sign_req, unsigned int exec_req
 		throw GradeTooLowException();
 }
 
+// Copy constructor
 Form::Form(const Form& other) 
 	: _name(other._name)
 	, _isSigned(other._isSigned)
@@ -44,6 +47,7 @@ Form::Form(const Form& other)
 	std::cout << "Form copy constructor called" << std::endl;
 }
 
+// Copy assignment operator
 Form& Form::operator=(const Form& other) {
 	std::cout << "Form assignment operator called" << std::endl;
 	if (this != &other)
@@ -51,10 +55,12 @@ Form& Form::operator=(const Form& other) {
 	return *this;
 }
 
+// Destructor
 Form::~Form(void) {
 	std::cout << "Form destructor called" << std::endl;
 }
 
+// Accessor(s)
 const std::string& Form::getName(void) const {
 	return this->_name;
 }
@@ -71,12 +77,14 @@ unsigned int Form::getRequiredExecGrade(void) const {
 	return this->_requiredExecGrade;
 }
 
+// Core method(s)
 void Form::beSigned(const Bureaucrat& b) {
 	if (b.getGrade() > this->_requiredSignGrade)
 		throw GradeTooLowException();
 	this->_isSigned = true;
 }
 
+// Exception class(es)
 const char* Form::GradeTooHighException::what() const throw() {
 	return "Form: grade requirement is too high!";
 }
@@ -85,6 +93,7 @@ const char* Form::GradeTooLowException::what() const throw() {
 	return "Form: grade requirement is too low!";
 }
 
+// Overload of insertion operator
 std::ostream& operator<<(std::ostream& os, const Form& f) {
 	os << "Form '" << f.getName() 
 		<< "' [Status: " << (f.getSignedStatus() ? "signed" : "unsigned")

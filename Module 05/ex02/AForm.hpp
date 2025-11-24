@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:13 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 13:58:02 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/24 15:54:25 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class AForm {
 		AForm& operator=(const AForm& other);
 
 		// Destructor
-		~AForm(void);
+		virtual ~AForm(void);
 
 		// Accessor(s)
 		const std::string&	getName(void) const;
@@ -54,6 +54,9 @@ class AForm {
 		// Core method(s)
 		void				beSigned(const Bureaucrat& b);
 		virtual void		execute(Bureaucrat const & executor) const = 0;
+
+		// Utility method(s)
+		static int			coinFlip(void);
 
 		// Exception class(es)
 		class GradeTooHighException : public std::exception {
