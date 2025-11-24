@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:14:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/16 10:03:31 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/24 14:24:40 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ DiamondTrap::~DiamondTrap(void) {
 }
 
 // Member function(s)
+void DiamondTrap::attack(const std::string& target) {
+	ScavTrap::attack(target);
+}
+
 void DiamondTrap::whoAmI(void) {
 	std::cout
 		<< "I am DiamondTrap " << this->_name 

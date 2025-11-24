@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:14:42 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/13 11:56:46 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/24 14:24:37 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ class DiamondTrap : public FragTrap, public ScavTrap {
 		~DiamondTrap(void);
 
 		// Member function(s)
+		void	attack(const std::string& target);
 		void	whoAmI(void);
-
-		// Using declaration
-		using	ScavTrap::attack;
 
 	private:
 
