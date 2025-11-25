@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:15 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:32:55 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:37:33 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 AForm::AForm(void)
 	: _name("unnamed")
 	, _isSigned(false)
-	, _requiredSignGrade(150)
-	, _requiredExecGrade(150)
+	, _requiredSignGrade(LOWEST_GRADE)
+	, _requiredExecGrade(LOWEST_GRADE)
 {
 	std::cout << "AForm default constructor called" << std::endl;
 }
@@ -33,9 +33,9 @@ AForm::AForm(const std::string& name, unsigned int sign_req, unsigned int exec_r
 	, _requiredExecGrade(exec_req)
 {
 	std::cout << "AForm parameterized constructor called" << std::endl;
-	if (sign_req < 1 || exec_req < 1)
+	if (sign_req < HIGHEST_GRADE || exec_req < HIGHEST_GRADE)
 		throw GradeTooHighException();
-	if (sign_req > 150 || exec_req > 150)
+	if (sign_req > LOWEST_GRADE || exec_req > LOWEST_GRADE)
 		throw GradeTooLowException();
 }
 
@@ -98,15 +98,15 @@ int AForm::coinFlip(void) {
 
 // Exception class(es)
 const char* AForm::GradeTooHighException::what() const throw() {
-	return "Form: grade requirement is too high!";
+	return "the grade is too high";
 }
 
 const char* AForm::GradeTooLowException::what() const throw() {
-	return "Form: grade requirement is too low!";
+	return "the grade is too low";
 }
 
 const char* AForm::FormNotSignedException::what() const throw() {
-	return "Cannot execute: form is not signed";
+	return "the form is not signed";
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& f) {

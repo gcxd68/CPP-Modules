@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:57:32 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:47:35 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:00:08 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,6 @@ int main(void) {
 		frank.signForm(robot2);
 		std::cout << "[ Frank (grade 50) tries to execute (requires 45)... ]" << std::endl;
 		frank.executeForm(robot2);
-	}
-	catch (std::exception& e) {
-		std::cout << "Error: " << e.what() << std::endl;
-	}
-	std::cout << MAGENTA << "\n=== TEST 6: GRADE TOO LOW TO SIGN ===" << RESET << std::endl;
-	try {
-		Bureaucrat grace("Grace", 30);
-		PresidentialPardonForm pardon2("Ford Prefect");
-		std::cout << "[ Grace (grade 30) tries to sign (requires 25)... ]" << std::endl;
-		grace.signForm(pardon2);
 	}
 	catch (std::exception& e) {
 		std::cout << "Error: " << e.what() << std::endl;

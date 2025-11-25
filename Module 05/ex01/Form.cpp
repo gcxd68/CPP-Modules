@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:15 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 12:16:49 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:31:57 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 Form::Form(void)
 	: _name("unnamed")
 	, _isSigned(false)
-	, _requiredSignGrade(150)
-	, _requiredExecGrade(150)
+	, _requiredSignGrade(LOWEST_GRADE)
+	, _requiredExecGrade(LOWEST_GRADE)
 {
 	std::cout << "Form default constructor called" << std::endl;
 }
@@ -31,9 +31,9 @@ Form::Form(const std::string& name, unsigned int sign_req, unsigned int exec_req
 	, _requiredExecGrade(exec_req)
 {
 	std::cout << "Form parameterized constructor called" << std::endl;
-	if (sign_req < 1 || exec_req < 1)
+	if (sign_req < HIGHEST_GRADE || exec_req < HIGHEST_GRADE)
 		throw GradeTooHighException();
-	if (sign_req > 150 || exec_req > 150)
+	if (sign_req > LOWEST_GRADE || exec_req > LOWEST_GRADE)
 		throw GradeTooLowException();
 }
 
@@ -86,11 +86,11 @@ void Form::beSigned(const Bureaucrat& b) {
 
 // Exception class(es)
 const char* Form::GradeTooHighException::what() const throw() {
-	return "Form: grade requirement is too high!";
+	return "the grade is too high";
 }
 
 const char* Form::GradeTooLowException::what() const throw() {
-	return "Form: grade requirement is too low!";
+	return "the grade is too low";
 }
 
 // Overload of insertion operator

@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:36:04 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:14:23 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 11:26:22 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ class PresidentialPardonForm : public AForm {
 	private:
 
 		//Attribute(s)
-		std::string _target;
+		static const unsigned int	SIGN_GRADE = 25;
+		static const unsigned int	EXEC_GRADE = 5;
+		std::string					_target;
 
 	public:
 

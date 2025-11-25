@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:36:10 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:14:35 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:54:48 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 // Default constructor
 ShrubberyCreationForm::ShrubberyCreationForm()
-	: AForm("Default Shrubbery Creation", 145, 137)
+	: AForm("Default shrubbery creation", SIGN_GRADE, EXEC_GRADE)
 	, _target("Default")
 {}
 
 // Parameterized constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-	: AForm("ShrubberyCreation", 145, 137)
+	: AForm("Shrubbery creation", SIGN_GRADE, EXEC_GRADE)
 	, _target(target)
 {}
 
@@ -79,4 +79,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 		throw std::runtime_error("Failed to create file");
 	printTrees(outfile);
 	outfile.close();
+	std::cout
+		<< "ASCII trees successfully written to '"
+		<< this->_target << "_shrubbery'" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:13 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 13:40:44 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:37:17 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ class Form {
 	
 	private:
 
-		const std::string	_name;
-		bool				_isSigned;
-		const unsigned int	_requiredSignGrade;
-		const unsigned int	_requiredExecGrade;
+		static const unsigned int	HIGHEST_GRADE = 1;
+		static const unsigned int	LOWEST_GRADE = 150;
+		const std::string			_name;
+		bool						_isSigned;
+		const unsigned int			_requiredSignGrade;
+		const unsigned int			_requiredExecGrade;
 
 	public:
 

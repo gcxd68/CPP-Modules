@@ -6,11 +6,11 @@
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/18 12:58:09 by gdosch            #+#    #+#              #
-#    Updated: 2025/11/24 15:48:17 by gdosch           ###   ########.fr        #
+#    Updated: 2025/11/25 13:59:51 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= intern
+NAME			= execute
 
 CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98

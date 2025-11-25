@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:04 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/20 13:12:49 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 12:24:23 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ class Bureaucrat {
 	private:
 
 		// Attribute(s)
-		const std::string	_name;
-		unsigned int		_grade;
+		static const unsigned int	HIGHEST_GRADE = 1;
+		static const unsigned int	LOWEST_GRADE = 150;
+		const std::string			_name;
+		unsigned int				_grade;
 
 	public:
 
@@ -33,7 +35,7 @@ class Bureaucrat {
 		Bureaucrat(void);
 
 		// Parameterized constructor
-		Bureaucrat(const std::string& name, int grade);
+		Bureaucrat(const std::string& name, unsigned int grade);
 
 		// Copy constructor
 		Bureaucrat(const Bureaucrat& other);

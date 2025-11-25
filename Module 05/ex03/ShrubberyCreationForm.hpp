@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:36:11 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:48:32 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 11:21:40 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ class ShrubberyCreationForm : public AForm {
 
 	private:
 
-	
+		//Attribute(s)
+		static const unsigned int SIGN_GRADE = 145;
+		static const unsigned int EXEC_GRADE = 137;
 		std::string _target;
 	
 	public:

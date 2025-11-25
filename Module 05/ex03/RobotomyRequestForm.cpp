@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:36:07 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:14:27 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:48:04 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 // Default Constructor
 RobotomyRequestForm::RobotomyRequestForm()
-	: AForm("Default Robotomy Request", 72, 45)
+	: AForm("Default robotomy request", SIGN_GRADE, EXEC_GRADE)
 	, _target("Default")
 {}
 
 // Parameterized constructor
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-	: AForm("RobotomyRequest", 72, 45)
+	: AForm("Robotomy request", SIGN_GRADE, EXEC_GRADE)
 	, _target(target)
 {}
 
@@ -47,9 +47,9 @@ RobotomyRequestForm::~RobotomyRequestForm(void) {}
 
 // Core method(s)
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-	if (!getSignedStatus())
+	if (!this->getSignedStatus())
 		throw FormNotSignedException();
-	if (executor.getGrade() > getRequiredExecGrade())
+	if (executor.getGrade() > this->getRequiredExecGrade())
 		throw GradeTooLowException();
 	std::cout << "Bzzzzzzzz... Whirrrrr... Clank!" << std::endl;
 	if (AForm::coinFlip())

@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:06 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:19:03 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 12:58:35 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define RESET "\033[0m"
 
 int main(void) {
-	std::cout << MAGENTA << "=== Test 1: Valid bureaucrat ===" << RESET << std::endl;
+	std::cout << MAGENTA << "=== TEST 1: VALID BUREAUCRAT ===" << RESET << std::endl;
 	try {
 		Bureaucrat bob("Bob", 75);
 		std::cout << bob << std::endl;
@@ -26,7 +26,7 @@ int main(void) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 
-	std::cout << MAGENTA << "\n=== Test 2: Grade too high ===" << RESET << std::endl;
+	std::cout << MAGENTA << "\n=== TEST 2: GRADE TOO HIGH ===" << RESET << std::endl;
 	try {
 		Bureaucrat alice("Alice", 0);
 		std::cout << alice << std::endl;
@@ -35,7 +35,7 @@ int main(void) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 
-	std::cout << MAGENTA << "\n=== Test 3: Grade too low ===" << RESET << std::endl;
+	std::cout << MAGENTA << "\n=== TEST 3: GRADE TOO LOW ===" << RESET << std::endl;
 	try {
 		Bureaucrat charlie("Charlie", 151);
 		std::cout << charlie << std::endl;
@@ -44,7 +44,7 @@ int main(void) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 
-	std::cout << MAGENTA << "\n=== Test 4: Increment grade ===" << RESET << std::endl;
+	std::cout << MAGENTA << "\n=== TEST 4: INCREMENT GRADE ===" << RESET << std::endl;
 	try {
 		Bureaucrat dave("Dave", 2);
 		std::cout << dave << std::endl;
@@ -58,7 +58,7 @@ int main(void) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 
-	std::cout << MAGENTA << "\n=== Test 5: Decrement grade ===" << RESET << std::endl;
+	std::cout << MAGENTA << "\n=== TEST 5: DECREMENT GRADE ===" << RESET << std::endl;
 	try {
 		Bureaucrat eve("Eve", 149);
 		std::cout << eve << std::endl;

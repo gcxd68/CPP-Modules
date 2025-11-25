@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:02 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/24 15:35:26 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:01:07 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 // Default constructor
 Bureaucrat::Bureaucrat(void)
 	: _name("Unknown")
-	, _grade(150)
+	, _grade(LOWEST_GRADE)
 {
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 }
 
 // Parameterized constructor
-Bureaucrat::Bureaucrat(const std::string& name, int grade)
+Bureaucrat::Bureaucrat(const std::string& name, unsigned int grade)
 	: _name(name)
 {
 	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
-	if (grade < 1)
+	if (grade < HIGHEST_GRADE)
 		throw GradeTooHighException();
-	if (grade > 150)
+	if (grade > LOWEST_GRADE)
 		throw GradeTooLowException();
 	this->_grade = grade;
 }
@@ -68,14 +68,14 @@ unsigned int Bureaucrat::getGrade(void) const {
 
 // Core method(s)
 void Bureaucrat::incrementGrade(void) {
-	if (this->_grade <= 1)
+	if (this->_grade <= HIGHEST_GRADE)
 		throw GradeTooHighException();
 	std::cout << "Incrementing " << this->_name << "'s grade" << std::endl;
 	this->_grade--;
 }
 
 void Bureaucrat::decrementGrade(void) {
-	if (this->_grade >= 150)
+	if (this->_grade >= LOWEST_GRADE)
 		throw GradeTooLowException();
 	std::cout << "Decrementing " << this->_name << "'s grade" << std::endl;
 	this->_grade++;
@@ -88,7 +88,7 @@ void Bureaucrat::signForm(AForm& form) {
 	}
 	catch (std::exception& e) {
 		std::cout << this->_name << " couldn't sign " << form.getName() 
-			<< ": " << e.what() << std::endl;
+			<< " because " << e.what() << "." << std::endl;
 	}
 }
 
@@ -99,17 +99,17 @@ void Bureaucrat::executeForm(AForm const & form) const {
 	}
 	catch (std::exception& e) {
 		std::cout << this->_name << " couldn't execute " << form.getName() 
-			<< ": " << e.what() << std::endl;
+			<< " because " << e.what() << "." << std::endl;
 	}
 }
 
 // Exception implementation(s)
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return "Grade is too high!";
+const char*	Bureaucrat::GradeTooHighException::what() const throw() {
+	return "the bureaucrat's grade is too high";
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return "Grade is too low!";
+const char*	Bureaucrat::GradeTooLowException::what() const throw() {
+	return "the bureaucrat's grade is too low";
 }
 
 // Insertion operator overload
