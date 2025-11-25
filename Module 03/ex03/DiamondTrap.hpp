@@ -38,7 +38,7 @@ class DiamondTrap : public FragTrap, public ScavTrap {
 		// Member function(s)
 		void	whoAmI(void);
 
-		// Using declaration
+		// Using declaration(s)
 		using	ScavTrap::attack;
 
 	private:
