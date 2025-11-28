@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 09:18:41 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/28 13:01:28 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/28 12:39:05 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/28 12:42:36 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#ifndef DATA_HPP
+# define DATA_HPP
 
 # include <string>
 
-class ScalarConverter {
-
-	private:
-
-		// Unused special member functions
-		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter&);
-		ScalarConverter& operator=(const ScalarConverter&);
-		~ScalarConverter(void);
-
-	public:
-
-		// Core method(s)
-		static void convert(const std::string &literal);
-
+struct Data {
+	int			id;
+	std::string	name;
+	float		value;
 };
 
 #endif

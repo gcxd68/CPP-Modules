@@ -6,16 +6,16 @@
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/18 12:58:09 by gdosch            #+#    #+#              #
-#    Updated: 2025/11/28 12:32:51 by gdosch           ###   ########.fr        #
+#    Updated: 2025/11/28 14:07:13 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= convert
+NAME			= base
 
 CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS			= ScalarConverter.cpp main.cpp
+SRCS			= Base.cpp A.cpp B.cpp C.cpp main.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 

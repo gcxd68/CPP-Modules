@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 09:18:41 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/28 13:01:28 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/28 13:43:00 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/28 14:48:09 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#ifndef B_HPP
+# define B_HPP
 
-# include <string>
+class Base;
 
-class ScalarConverter {
-
-	private:
-
-		// Unused special member functions
-		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter&);
-		ScalarConverter& operator=(const ScalarConverter&);
-		~ScalarConverter(void);
+class B : public Base {
 
 	public:
 
-		// Core method(s)
-		static void convert(const std::string &literal);
+		// Destructor
+		~B();
 
 };
 

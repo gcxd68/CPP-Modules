@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:18:41 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/28 13:01:28 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/28 13:09:46 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#ifndef SERIALIZER_HPP
+# define SERIALIZER_HPP
 
+# include <stdint.h>
 # include <string>
 
-class ScalarConverter {
+struct Data;
+
+class Serializer {
 
 	private:
 
 		// Unused special member functions
-		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter&);
-		ScalarConverter& operator=(const ScalarConverter&);
-		~ScalarConverter(void);
+		Serializer(void);
+		Serializer(const Serializer&);
+		Serializer& operator=(const Serializer&);
+		~Serializer(void);
 
 	public:
 
 		// Core method(s)
-		static void convert(const std::string &literal);
+		static uintptr_t	serialize(Data* ptr);
+		static Data*		deserialize(uintptr_t raw);
 
 };
 
