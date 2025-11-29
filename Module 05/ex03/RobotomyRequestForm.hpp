@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:36:09 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 11:21:15 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 18:15:30 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class RobotomyRequestForm : public AForm {
 	private:
 
 		//Attribute(s)
-		static const unsigned int SIGN_GRADE = 72;
-		static const unsigned int EXEC_GRADE = 45;
-		std::string _target;
+		static const unsigned int	SIGN_GRADE = 72;
+		static const unsigned int	EXEC_GRADE = 45;
+		std::string					_target;
 	
 	public:
 

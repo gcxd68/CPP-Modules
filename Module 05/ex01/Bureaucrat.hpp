@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:04 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 12:24:23 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:09:48 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ class Bureaucrat {
 };
 
 // Overload of insertion operator
-std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif

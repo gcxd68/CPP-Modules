@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:15 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 13:31:57 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:15:56 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,32 @@
 Form::Form(void)
 	: _name("unnamed")
 	, _isSigned(false)
-	, _requiredSignGrade(LOWEST_GRADE)
-	, _requiredExecGrade(LOWEST_GRADE)
+	, _reqSignGrade(LOWEST_GRADE)
+	, _reqExecGrade(LOWEST_GRADE)
 {
 	std::cout << "Form default constructor called" << std::endl;
 }
 
 // Parameterized constructor
-Form::Form(const std::string& name, unsigned int sign_req, unsigned int exec_req) 
+Form::Form(const std::string& name, unsigned int reqSignGrade, unsigned int reqExecGrade)
 	: _name(name)
 	, _isSigned(false)
-	, _requiredSignGrade(sign_req)
-	, _requiredExecGrade(exec_req)
+	, _reqSignGrade(reqSignGrade)
+	, _reqExecGrade(reqExecGrade)
 {
 	std::cout << "Form parameterized constructor called" << std::endl;
-	if (sign_req < HIGHEST_GRADE || exec_req < HIGHEST_GRADE)
+	if (reqSignGrade < HIGHEST_GRADE || reqExecGrade < HIGHEST_GRADE)
 		throw GradeTooHighException();
-	if (sign_req > LOWEST_GRADE || exec_req > LOWEST_GRADE)
+	if (reqSignGrade > LOWEST_GRADE || reqExecGrade > LOWEST_GRADE)
 		throw GradeTooLowException();
 }
 
 // Copy constructor
-Form::Form(const Form& other) 
+Form::Form(const Form& other)
 	: _name(other._name)
 	, _isSigned(other._isSigned)
-	, _requiredSignGrade(other._requiredSignGrade)
-	, _requiredExecGrade(other._requiredExecGrade)
+	, _reqSignGrade(other._reqSignGrade)
+	, _reqExecGrade(other._reqExecGrade)
 {
 	std::cout << "Form copy constructor called" << std::endl;
 }
@@ -69,17 +69,17 @@ bool Form::getSignedStatus(void) const {
 	return this->_isSigned;
 }
 
-unsigned int Form::getRequiredSignGrade(void) const {
-	return this->_requiredSignGrade;
+unsigned int Form::getReqSignGrade(void) const {
+	return this->_reqSignGrade;
 }
 
-unsigned int Form::getRequiredExecGrade(void) const {
-	return this->_requiredExecGrade;
+unsigned int Form::getReqExecGrade(void) const {
+	return this->_reqExecGrade;
 }
 
 // Core method(s)
 void Form::beSigned(const Bureaucrat& b) {
-	if (b.getGrade() > this->_requiredSignGrade)
+	if (b.getGrade() > this->_reqSignGrade)
 		throw GradeTooLowException();
 	this->_isSigned = true;
 }
@@ -97,7 +97,7 @@ const char* Form::GradeTooLowException::what() const throw() {
 std::ostream& operator<<(std::ostream& os, const Form& f) {
 	os << "Form '" << f.getName() 
 		<< "' [Status: " << (f.getSignedStatus() ? "signed" : "unsigned")
-		<< ", Sign req: " << f.getRequiredSignGrade()
-		<< ", Exec req: " << f.getRequiredExecGrade() << "]";
+		<< ", Sign req: " << f.getReqSignGrade()
+		<< ", Exec req: " << f.getReqExecGrade() << "]";
 	return os;
 }

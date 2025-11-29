@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:36:10 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 13:54:48 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:24:48 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "Bureaucrat.hpp"
 #include <cstdlib>
 #include <fstream>
+#include <stdexcept>
 
 // Default constructor
 ShrubberyCreationForm::ShrubberyCreationForm()
@@ -72,7 +73,7 @@ static void printTrees(std::ofstream& outfile) {
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	if (!getSignedStatus())
 		throw FormNotSignedException();
-	if (executor.getGrade() > getRequiredExecGrade())
+	if (executor.getGrade() > getReqExecGrade())
 		throw GradeTooLowException();
 	std::ofstream outfile((this->_target + "_shrubbery").c_str());
 	if (!outfile.is_open())

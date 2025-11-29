@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:02 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 12:37:57 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:41:18 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <exception>
 #include <iostream>
 #include <string>
-
-class Form;
 
 // Default constructor
 Bureaucrat::Bureaucrat(void)
@@ -104,7 +102,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 // Insertion operator overload
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
-	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
-	return out;
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
+	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
+	return os;
 }

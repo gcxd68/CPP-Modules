@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:57:32 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/28 13:31:21 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:16:23 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main(void) {
 			delete rrf;
 		}
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 2: INTERN CREATES SHRUBBERY CREATION ===" << RESET << std::endl;
 	{
 		Intern intern;
@@ -39,6 +40,7 @@ int main(void) {
 			delete form;
 		}
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 3: INTERN CREATES PRESIDENTIAL PARDON ===" << RESET << std::endl;
 	{
 		Intern intern;
@@ -49,6 +51,7 @@ int main(void) {
 			delete form;
 		}
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 4: INVALID FORM NAME ===" << RESET << std::endl;
 	{
 		Intern intern;
@@ -57,6 +60,7 @@ int main(void) {
 		if (!form)
 			std::cout << "[ Form creation failed as expected ]" << std::endl;
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 5: COMPLETE WORKFLOW ===" << RESET << std::endl;
 	{
 		Intern intern;

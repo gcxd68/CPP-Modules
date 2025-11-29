@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:36:07 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 13:48:04 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:22:02 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ RobotomyRequestForm::~RobotomyRequestForm(void) {}
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	if (!this->getSignedStatus())
 		throw FormNotSignedException();
-	if (executor.getGrade() > this->getRequiredExecGrade())
+	if (executor.getGrade() > this->getReqExecGrade())
 		throw GradeTooLowException();
 	std::cout << "Bzzzzzzzz... Whirrrrr... Clank!" << std::endl;
 	if (AForm::coinFlip())

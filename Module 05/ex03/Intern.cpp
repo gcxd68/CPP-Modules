@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:48:49 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/27 09:45:01 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:34:03 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target) 
 		&Intern::createRobotomyRequestForm,
 		&Intern::createPresidentialPardonForm
 	};
-	for (int i = 0; i < 3; i++) {
+	for (size_t i = 0; i < sizeof(formNames) / sizeof(*formNames) ; i++) {
 		if (formName == formNames[i]) {
 			std::cout << "Intern creates " << formName << std::endl;
 			return (this->*formCreators[i])(target);

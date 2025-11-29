@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:02:13 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 13:33:13 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:13:47 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class AForm {
 		static const unsigned int	LOWEST_GRADE = 150;
 		const std::string			_name;
 		bool						_isSigned;
-		const unsigned int			_requiredSignGrade;
-		const unsigned int			_requiredExecGrade;
+		const unsigned int			_reqSignGrade;
+		const unsigned int			_reqExecGrade;
 
 	public:
 
@@ -36,7 +36,7 @@ class AForm {
 		AForm(void);
 
 		// Parameterized constructor
-		AForm(const std::string& name, unsigned int sign_req, unsigned int exec_req);
+		AForm(const std::string& name, unsigned int reqSignGrade, unsigned int reqExecGrade);
 
 		// Copy constructor
 		AForm(const AForm& other);
@@ -50,8 +50,8 @@ class AForm {
 		// Accessor(s)
 		const std::string&	getName(void) const;
 		bool				getSignedStatus(void) const;
-		unsigned int		getRequiredSignGrade(void) const;
-		unsigned int		getRequiredExecGrade(void) const;
+		unsigned int		getReqSignGrade(void) const;
+		unsigned int		getReqExecGrade(void) const;
 
 		// Core method(s)
 		void				beSigned(const Bureaucrat& b);

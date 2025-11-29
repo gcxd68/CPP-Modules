@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:57:32 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/25 13:00:08 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:10:33 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main(void) {
 	catch (std::exception& e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 2: RobotomyRequestForm SUCCESS ===" << RESET << std::endl;
 	try {
 		Bureaucrat bob("Bob", 40);
@@ -44,6 +45,7 @@ int main(void) {
 	catch (std::exception& e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 3: PresidentialPardonForm SUCCESS ===" << RESET << std::endl;
 	try {
 		Bureaucrat charlie("Charlie", 1);
@@ -55,6 +57,7 @@ int main(void) {
 	catch (std::exception& e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 4: EXECUTE WITHOUT SIGNING ===" << RESET << std::endl;
 	try {
 		Bureaucrat dave("Dave", 1);
@@ -65,6 +68,7 @@ int main(void) {
 	catch (std::exception& e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
+
 	std::cout << MAGENTA << "\n=== TEST 5: GRADE TOO LOW TO EXECUTE ===" << RESET << std::endl;
 	try {
 		Bureaucrat frank("Frank", 50);
