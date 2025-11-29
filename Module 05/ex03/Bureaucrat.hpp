@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:58:04 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/29 17:14:47 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/29 18:22:59 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Bureaucrat {
 		// Attribute(s)
 		static const unsigned int	HIGHEST_GRADE = 1;
 		static const unsigned int	LOWEST_GRADE = 150;
-		const std::string	_name;
-		unsigned int		_grade;
+		const std::string			_name;
+		unsigned int				_grade;
 
 	public:
 
