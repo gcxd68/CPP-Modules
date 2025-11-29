@@ -21,12 +21,12 @@
 int main(void) {
 	std::cout << MAGENTA << "=== TEST 1: INTERN CREATES ROBOTOMY REQUEST ===" << RESET << std::endl;
 	{
-		Intern someRandomIntern;
-		AForm* rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-		if (rrf) {
-			std::cout << *rrf << std::endl;
-			delete rrf;
+		Intern intern;
+		AForm* form;
+		form = intern.makeForm("robotomy request", "Bender");
+		if (form) {
+			std::cout << *form << std::endl;
+			delete form;
 		}
 	}
 
