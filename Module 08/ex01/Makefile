@@ -6,16 +6,16 @@
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/18 12:58:09 by gdosch            #+#    #+#              #
-#    Updated: 2025/11/30 12:00:51 by gdosch           ###   ########.fr        #
+#    Updated: 2025/11/30 18:35:34 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= base
+NAME			= span
 
 CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS			= Base.cpp main.cpp
+SRCS			= main.cpp Span.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 

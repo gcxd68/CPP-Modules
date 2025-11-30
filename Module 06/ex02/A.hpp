@@ -15,13 +15,6 @@
 
 class Base;
 
-class A : public Base {
-
-	public:
-
-		// Destructor
-		~A();
-
-};
+class A : public Base {};
 
 #endif

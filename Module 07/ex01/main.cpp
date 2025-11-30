@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:35:30 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/29 21:58:42 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/30 12:13:52 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,13 @@ void doubleValue(T& element) {
 }
 
 template <typename T>
-void toUpperCase(T& element) {
-	for (size_t i = 0; i < element.length(); i++)
-		element[i] = std::toupper(element[i]);
-}
-
-template <typename T>
-void toLowerCase(T& element) {
-	for (size_t i = 0; i < element.length(); i++)
-		element[i] = std::tolower(element[i]);
+void toMockingCase(T& element) {
+	for (size_t i = 0; i < element.length(); i++) {
+		if (i % 2)
+			element[i] = std::toupper(element[i]);
+		else
+			element[i] = std::tolower(element[i]);			
+	}
 }
 
 int main(void) {
@@ -82,12 +80,8 @@ int main(void) {
 	std::cout << "Original:\t";
 	::iter(strArray, strSize, print<std::string>);
 	std::cout << std::endl;
-	::iter(strArray, strSize, toUpperCase<std::string>);
-	std::cout << "Uppercase:\t";
-	::iter(strArray, strSize, print<std::string>);
-	std::cout << std::endl;
-	::iter(strArray, strSize, toLowerCase<std::string>);
-	std::cout << "Lowercase:\t";
+	::iter(strArray, strSize, toMockingCase<std::string>);
+	std::cout << "Mocking case:\t";
 	::iter(strArray, strSize, print<std::string>);
 	std::cout << std::endl;
 

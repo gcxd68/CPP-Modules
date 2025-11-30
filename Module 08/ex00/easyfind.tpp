@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   easyfind.tpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/28 13:19:30 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/30 15:27:40 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/30 17:59:50 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/30 18:43:51 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
-#include <iostream>
+#ifndef EASYFIND_TPP
+# define EASYFIND_TPP
 
-#define MAGENTA "\033[35m"
-#define RESET "\033[0m"
+# include <algorithm>
+# include <stdexcept>
 
-int main() {
-	for (int i = 0; i < 10; i++) {
-		Base *obj = generate();
-		std::cout
-			<< (i ? "\n" : "") << MAGENTA
-			<< "==== BASE OBJECT NO." << i + 1 << " ===="
-			<< RESET << std::endl;
-		identify(obj);// Pass Base* p pointer
-		identify(*obj);// Dereference and pass Base& p reference
-		delete obj;
+template <typename T>
+typename T::iterator easyfind(T& container, int value) {
+	typename T::iterator it = std::find(container.begin(), container.end(), value);
+	if (it == container.end()) {
+		throw std::runtime_error("Value not found in container");
 	}
+	return it;
 }
+
+#endif

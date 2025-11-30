@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/28 13:19:30 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/30 15:27:40 by gdosch           ###   ########.fr       */
+/*   Created: 2025/11/30 17:55:20 by gdosch            #+#    #+#             */
+/*   Updated: 2025/11/30 18:35:56 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
-#include <iostream>
+#ifndef EASYFIND_HPP
+# define EASYFIND_HPP
 
-#define MAGENTA "\033[35m"
-#define RESET "\033[0m"
+template <typename T>
+typename T::iterator easyfind(T& container, int value);
 
-int main() {
-	for (int i = 0; i < 10; i++) {
-		Base *obj = generate();
-		std::cout
-			<< (i ? "\n" : "") << MAGENTA
-			<< "==== BASE OBJECT NO." << i + 1 << " ===="
-			<< RESET << std::endl;
-		identify(obj);// Pass Base* p pointer
-		identify(*obj);// Dereference and pass Base& p reference
-		delete obj;
-	}
-}
+# include "easyfind.tpp"
+
+#endif

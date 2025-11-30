@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 12:37:01 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/28 13:15:14 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/30 15:29:23 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 #include "Serializer.hpp"
 #include "Data.hpp"
 
+#define MAGENTA "\033[35m"
+#define RESET "\033[0m"
+
 int main() {
+	std::cout << MAGENTA << "==== SERIALIZATION TEST ====" << RESET << std::endl;
 	Data originalData;
 	originalData.id = 42;
 	originalData.name = "Test Data";
@@ -41,7 +45,7 @@ int main() {
 	std::cout << std::endl;
 
 	if (deserialized == &originalData)
-		std::cout << "Success: pointers are equal!" << std::endl;
+		std::cout << "[ SUCCESS : pointers are equal ]" << std::endl;
 	else
-		std::cout << "Error: pointers are different!" << std::endl;
+		std::cout << "[ FAILURE : pointers are different ]" << std::endl;
 }

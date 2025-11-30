@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:18:43 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/28 13:00:52 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/11/30 16:18:51 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter&) { return *th
 ScalarConverter::~ScalarConverter(void) {}
 
 // File-scope static function(s)
-static bool isPrintableChar(const std::string& literal, char& parsedChar) {
+static bool isChar(const std::string& literal, char& parsedChar) {
 	parsedChar = static_cast<char>(literal[0]);
 	return (literal.length() == 1 && !std::isdigit(literal[0]) && std::isprint(literal[0]));
 }
@@ -50,29 +50,34 @@ static bool isDouble(const std::string& literal, double& parsedDouble) {
 }
 
 static void printTypes(double value) {
-	std::string types[] = {"char", "int", "float", "double"};
-	for (size_t i = 0; i < sizeof(types) / sizeof(*types); i++) {
-		std::cout << types[i] << ": ";
-		if (i < 2 && (std::isnan(value) || std::isinf(value)
-			|| (i == 0 && (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max()))
-			|| value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max()))
-			std::cout << "impossible";
-		else if (i == 0 && !std::isprint(static_cast<int>(value)))
-			std::cout << "Non displayable";
-		else if (std::isnan(value) || std::isinf(value))
-			std::cout << (value > 0 ? "+inf" : value < 0 ? "-inf" : "nan") << (i == 2 ? "f" : "");
-		else if (i == 0)
-			std::cout << "'" << static_cast<char>(value) << "'";
-		else if (i == 1)
-			std::cout << static_cast<int>(value);
-		else if (value == static_cast<int>(value))
-			std::cout << std::fixed << std::setprecision(1) << value << (i == 2 ? "f" : "");
-		else if (i == 2)
-			std::cout << std::setprecision(std::numeric_limits<float>::digits10) << value << "f";
+	if (std::isnan(value) || std::isinf(value)) {
+		std::cout << "char: impossible\nint: impossible" << std::endl;
+		if (value < 0)
+			std::cout << "float: -inff\ndouble: -inf" << std::endl;
+		else if (value > 0)
+			std::cout << "float: +inff\ndouble: +inf" << std::endl;
 		else
-			std::cout << std::setprecision(std::numeric_limits<double>::digits10) << value;
-		std::cout << std::endl;
+			std::cout << "float: nanf\ndouble: nan" << std::endl;
+		return;
 	}
+	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max())
+		std::cout << "char: impossible" << std::endl;
+	else if (!std::isprint(static_cast<int>(value)))
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
+	if (value == static_cast<int>(value))
+		std::cout << "float: " << std::fixed << std::setprecision(1) << value << "f" << std::endl;
+	else
+		std::cout << "float: " << std::setprecision(std::numeric_limits<float>::digits10) << value << "f" << std::endl;
+	if (value == static_cast<int>(value))
+		std::cout << "double: " << std::fixed << std::setprecision(1) << value << std::endl;
+	else
+		std::cout << "double: " << std::setprecision(std::numeric_limits<double>::digits10) << value << std::endl;
 }
 
 // Core method(s)
@@ -81,19 +86,11 @@ void ScalarConverter::convert(const std::string& literal) {
 		std::cout << "Error: empty literal" << std::endl;
 		return;
 	}
-	double	value;
 	char	parsedChar;
 	int		parsedInt;
 	float	parsedFloat;
-	if (literal == "-inff" || literal == "+inff")
-		value = ((literal[0] == '-' ? -1 : 1) * std::numeric_limits<float>::infinity());
-	else if (literal == "nanf")
-		value = (std::numeric_limits<float>::quiet_NaN());
-	else if (literal == "-inf" || literal == "+inf")
-		value = (literal[0] == '-' ? -1 : 1) * std::numeric_limits<double>::infinity();
-	else if (literal == "nan")
-		value = std::numeric_limits<double>::quiet_NaN();
-	else if (isPrintableChar(literal, parsedChar))
+	double	value;
+	if (isChar(literal, parsedChar))
 		value = parsedChar;
 	else if (isInt(literal, parsedInt))
 		value = parsedInt;
