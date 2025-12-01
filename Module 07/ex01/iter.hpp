@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:35:48 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/29 21:58:52 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/01 13:57:00 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,16 @@
 
 # include <cstddef>
 
-template <typename T, typename Func>
-void iter(T* array, size_t length, Func function) {
+// Function template(s)
+template <typename T>
+void iter(T* array, size_t length, void(*function)(T&)) {
+	if (!array) return;
+	for (size_t i = 0; i < length; i++)
+		function(array[i]);
+}
+
+template <typename T>
+void iter(const T* array, size_t length, void(*function)(const T&)) {
 	if (!array) return;
 	for (size_t i = 0; i < length; i++)
 		function(array[i]);

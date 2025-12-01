@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:35:30 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/30 13:51:39 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/01 11:29:23 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(void) {
 	std::cout << MAGENTA "=== TEST 1: EMPTY ARRAY ===" RESET << std::endl;
 	try {
 		Array<int> empty;
-		std::cout << "Size: " << empty.size() << std::endl;
+		std::cout << "Size:\t\t" << empty.size() << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
@@ -29,10 +29,10 @@ int main(void) {
 	std::cout << MAGENTA "\n=== TEST 2: INTEGER ARRAY ===" RESET << std::endl;
 	try {
 		Array<int> intArray(5);
-		std::cout << "Size: " << intArray.size() << std::endl;
+		std::cout << "Size:\t\t" << intArray.size() << std::endl;
 		for (unsigned int i = 0; i < intArray.size(); i++)
 			intArray[i] = 9 - i;
-		std::cout << "Values: ";
+		std::cout << "Values:\t\t";
 		for (unsigned int i = 0; i < intArray.size(); i++)
 			std::cout << intArray[i] << " ";
 		std::cout << std::endl;
@@ -49,24 +49,24 @@ int main(void) {
 		Array<int> copy(original);
 		for (unsigned int i = 0; i < copy.size(); i++)
 			copy[i]++;
-		std::cout << "Original: " << original[0] << " " << original[1] << " " << original[2] << std::endl;
-		std::cout << "Copy: " << copy[0] << " " << copy[1] << " " << copy[2] << std::endl;
+		std::cout << "Original:\t" << original[0] << " " << original[1] << " " << original[2] << std::endl;
+		std::cout << "Plus one copy:\t" << copy[0] << " " << copy[1] << " " << copy[2] << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
 	std::cout << MAGENTA "\n=== TEST 4: ASSIGNMENT OPERATOR ===" RESET << std::endl;
 	try {
-		Array<int> a(3);
-		a[0] = 8;
-		a[1] = 6;
-		a[2] = 4;
-		Array<int> b;
-		b = a;
-		for (unsigned int i = 0; i < b.size(); i++)
-			b[i] /= 2;
-		std::cout << "A: " << a[0] << " " << a[1] << " " << a[2] << std::endl;
-		std::cout << "B: " << b[0] << " " << b[1] << " " << b[2] << std::endl;
+		Array<int> original(3);
+		original[0] = 8;
+		original[1] = 6;
+		original[2] = 4;
+		Array<int> copy;
+		copy = original;
+		for (unsigned int i = 0; i < copy.size(); i++)
+			copy[i] /= 2;
+		std::cout << "Original:\t" << original[0] << " " << original[1] << " " << original[2] << std::endl;
+		std::cout << "Halved copy:\t" << copy[0] << " " << copy[1] << " " << copy[2] << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
@@ -77,9 +77,9 @@ int main(void) {
 		strArray[0] = "Hello";
 		strArray[1] = "World";
 		strArray[2] = "!";
-		std::cout << "String Array: ";
+		std::cout << "Elements:\t";
 		for (unsigned int i = 0; i < strArray.size(); i++)
-			std::cout << strArray[i] << " ";
+			std::cout << "'" << strArray[i] << "' ";
 		std::cout << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "Exception: " << e.what() << std::endl;
@@ -91,6 +91,31 @@ int main(void) {
 		std::cout << intArray[5] << std::endl;
 		std::cout << "[ FAILURE: Should have thrown exception ]" RESET << std::endl;
 
+	} catch (const std::exception& e) {
+		std::cout << "[ SUCCESS ] Exception caught: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n" MAGENTA "=== TEST 7: INTEGER CONST ARRAY ===" RESET << std::endl;
+	try {
+		Array<int> constIntArray(4);
+		for (unsigned int i = 0; i < constIntArray.size(); i++)
+			constIntArray[i] = i + 5;
+		const Array<int> constArray(constIntArray);
+		std::cout << "Size:\t\t" << constArray.size() << std::endl;
+		std::cout << "Values:\t\t";
+		for (unsigned int i = 0; i < constArray.size(); i++)
+			std::cout << constArray[i] << " ";
+		std::cout << std::endl;
+	} catch (const std::exception& e) {
+		std::cout << "Exception: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n" MAGENTA "=== TEST 8: CONST ARRAY OUT OF BOUNDS ===" RESET << std::endl;
+	try {
+		Array<int> temp(3);
+		const Array<int> constArray(temp);
+		std::cout << constArray[3] << std::endl;
+		std::cout << "[ FAILURE: Should have thrown exception ]" << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "[ SUCCESS ] Exception caught: " << e.what() << std::endl;
 	}

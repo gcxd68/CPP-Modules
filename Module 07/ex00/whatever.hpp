@@ -6,14 +6,14 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:35:48 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/29 21:59:00 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/01 09:57:06 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
-// Template(s)
+// Function template(s)
 template <typename T>
 void swap(T& a, T& b) {
 	T temp = a;
