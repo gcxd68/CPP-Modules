@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:27:07 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/30 18:42:56 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/02 12:28:42 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MUTANTSTACK_HPP
 
 # include <stack>
-# include <deque>
 
 template <typename T>
 class MutantStack : public std::stack<T> {
@@ -28,7 +27,6 @@ class MutantStack : public std::stack<T> {
 		~MutantStack();
 
 		// Iterator type definitions
-		// We expose the iterators from the underlying container (std::deque)
 		typedef typename std::deque<T>::iterator iterator;
 		typedef typename std::deque<T>::const_iterator const_iterator;
 		typedef typename std::deque<T>::reverse_iterator reverse_iterator;

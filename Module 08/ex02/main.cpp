@@ -6,13 +6,14 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:27:41 by gdosch            #+#    #+#             */
-/*   Updated: 2025/11/30 19:01:33 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/02 12:34:59 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MutantStack.hpp"
 #include <iostream>
 #include <list>
-#include "MutantStack.hpp"
+#include <stack>
 
 #define MAGENTA "\033[35m"
 #define RESET "\033[0m"
@@ -67,11 +68,11 @@ int main() {
 		MutantStack<int> mstack;
 		for (int i = 0; i < 10; ++i)
 			mstack.push(i);
-		std::cout << "Forward iteration:" << std::endl;
+		std::cout << "Forward iteration: ";
 		for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
 			std::cout << *it << " ";
 		std::cout << std::endl;
-		std::cout << "Reverse iteration:" << std::endl;
+		std::cout << "Reverse iteration: ";
 		for (MutantStack<int>::reverse_iterator it = mstack.rbegin(); it != mstack.rend(); ++it)
 			std::cout << *it << " ";
 		std::cout << std::endl;
@@ -79,5 +80,14 @@ int main() {
 		std::cout << "Copy - size: " << mstack2.size() << std::endl;
 		mstack2.push(99);
 		std::cout << "Original size: " << mstack.size() << ", Copy size: " << mstack2.size() << std::endl;
+		std::cout << "Const forward iteration: ";
+		const MutantStack<int>& const_ref = mstack;
+		for (MutantStack<int>::const_iterator it = const_ref.begin(); it != const_ref.end(); ++it)
+			std::cout << *it << " ";
+		std::cout << std::endl;
+		std::cout << "Const reverse iteration: ";
+		for (MutantStack<int>::const_reverse_iterator it = const_ref.rbegin(); it != const_ref.rend(); ++it)
+			std::cout << *it << " ";
+		std::cout << std::endl;
 	}
 }
