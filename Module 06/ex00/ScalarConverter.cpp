@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:18:43 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/04 13:25:12 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/04 14:06:19 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static bool isInt(const std::string& literal, int& parsedInt) {
 static bool isFloat(const std::string& literal, float& parsedFloat) {
 	char *endptr;
 	parsedFloat = std::strtof(literal.c_str(), &endptr);
-	return literal.find('.') != std::string::npos && endptr[0] == 'f' && !endptr[1];
+	return (literal.find_first_of("0123456789") == std::string::npos || literal.find('.') != std::string::npos)
+		&& endptr[0] == 'f' && !endptr[1];
 }
 
 static bool isDouble(const std::string& literal, double& parsedDouble) {
