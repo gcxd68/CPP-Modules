@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 12:17:01 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/01 11:12:05 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/04 11:47:41 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class Array {
 		T&			operator[](unsigned int index);
 		const T&	operator[](unsigned int index) const;
 
-		// core method(s)
+		// Core method(s)
 		unsigned int size(void) const;
 
 };

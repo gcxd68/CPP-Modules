@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:35:30 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/01 11:29:23 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/04 11:47:42 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,25 @@
 int main(void) {
 	std::cout << MAGENTA "=== TEST 1: EMPTY ARRAY ===" RESET << std::endl;
 	try {
-		Array<int> empty;
-		std::cout << "Size:\t\t" << empty.size() << std::endl;
+		Array<int> empty1;
+		std::cout << "[ Default constructor ]\nsize = " << empty1.size() << std::endl;
+		Array<int> empty2(0);
+		std::cout << "[ Parameterized constructor ]\nsize = " << empty2.size() << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
 	std::cout << MAGENTA "\n=== TEST 2: INTEGER ARRAY ===" RESET << std::endl;
 	try {
-		Array<int> intArray(5);
+		Array<int> intArray(4);
 		std::cout << "Size:\t\t" << intArray.size() << std::endl;
+		std::cout << "Initialized:\t";
+		for (unsigned int i = 0; i < intArray.size(); i++)
+			std::cout << intArray[i] << " ";
+		std::cout << std::endl;
 		for (unsigned int i = 0; i < intArray.size(); i++)
 			intArray[i] = 9 - i;
-		std::cout << "Values:\t\t";
+		std::cout << "Assignated:\t";
 		for (unsigned int i = 0; i < intArray.size(); i++)
 			std::cout << intArray[i] << " ";
 		std::cout << std::endl;
@@ -42,31 +48,41 @@ int main(void) {
 
 	std::cout << MAGENTA "\n=== TEST 3: COPY CONSTRUCTOR ===" RESET << std::endl;
 	try {
-		Array<int> original(3);
-		original[0] = 1;
-		original[1] = 2;
-		original[2] = 3;
+		Array<int> original(4);
+		for (unsigned int i = 0; i < original.size(); i++)
+			original[i] = i + 1;
 		Array<int> copy(original);
 		for (unsigned int i = 0; i < copy.size(); i++)
 			copy[i]++;
-		std::cout << "Original:\t" << original[0] << " " << original[1] << " " << original[2] << std::endl;
-		std::cout << "Plus one copy:\t" << copy[0] << " " << copy[1] << " " << copy[2] << std::endl;
+		std::cout << "Original:\t";
+		for (unsigned int i = 0; i < original.size(); i++)
+			std::cout << original[i] << " ";
+		std::cout << std::endl;
+		std::cout << "Plus one copy:\t";
+		for (unsigned int i = 0; i < copy.size(); i++)
+			std::cout << copy[i] << " ";
+		std::cout << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
 	std::cout << MAGENTA "\n=== TEST 4: ASSIGNMENT OPERATOR ===" RESET << std::endl;
 	try {
-		Array<int> original(3);
-		original[0] = 8;
-		original[1] = 6;
-		original[2] = 4;
+		Array<int> original(4);
+		for (unsigned int i = 0; i < original.size(); i++)
+			original[i] = 8 - (2 * i);
 		Array<int> copy;
 		copy = original;
 		for (unsigned int i = 0; i < copy.size(); i++)
 			copy[i] /= 2;
-		std::cout << "Original:\t" << original[0] << " " << original[1] << " " << original[2] << std::endl;
-		std::cout << "Halved copy:\t" << copy[0] << " " << copy[1] << " " << copy[2] << std::endl;
+		std::cout << "Original:\t";
+		for (unsigned int i = 0; i < original.size(); i++)
+			std::cout << original[i] << " ";
+		std::cout << std::endl;
+		std::cout << "Halved copy:\t";
+		for (unsigned int i = 0; i < copy.size(); i++)
+			std::cout << copy[i] << " ";
+		std::cout << std::endl;
 	} catch (const std::exception& e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
