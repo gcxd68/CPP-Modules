@@ -6,16 +6,16 @@
 #    By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/18 12:58:09 by gdosch            #+#    #+#              #
-#    Updated: 2025/12/05 10:31:52 by gdosch           ###   ########.fr        #
+#    Updated: 2025/12/05 12:33:14 by gdosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= easyfind
+NAME			= btc
 
 CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS			= main.cpp
+SRCS			= BitcoinExchange.cpp main.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 

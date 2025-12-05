@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.tpp                                       :+:      :+:    :+:   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/30 17:59:50 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/05 10:30:18 by gdosch           ###   ########.fr       */
+/*   Created: 2025/12/05 12:30:05 by gdosch            #+#    #+#             */
+/*   Updated: 2025/12/05 12:57:53 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_TPP
-# define EASYFIND_TPP
+#include "BitcoinExchange.hpp"
 
-# include <algorithm>
-# include <stdexcept>
-
-template <typename T>
-typename T::iterator easyfind(T& container, int value) {
-	typename T::iterator it = std::find(container.begin(), container.end(), value);
-	if (it == container.end())
-		throw std::runtime_error("Value not found in container");
-	return it;
+BitcoinExchange::BitcoinExchange(void) {
+	const std::string& csvFile = "data.csv";
 }
 
-#endif
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {}
+		
+BitcoinExchange::BitcoinExchange(void) {}
+
+BitcoinExchange::loadDatabase()

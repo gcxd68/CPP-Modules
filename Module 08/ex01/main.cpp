@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:26:01 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/01 15:31:14 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/05 11:11:50 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,16 @@ int main() {
 		std::cout << "Longest span: " << sp.longestSpan() << std::endl; // Expected: UINT_MAX = 4294967295
 	}
 
+	std::cout << MAGENTA "\n=== TEST 4: 15000 NUMBERS ===" RESET << std::endl;
+	{
+		Span sp = Span(15000);
+		for (int i = 0; i < 15000; i++)
+			sp.addNumber(i + 1);
+		std::cout << "Size: " << sp.size() << std::endl;
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+	}
+	
 	std::cout << MAGENTA "\n=== TEST 5: FULL CONTAINER ===" RESET << std::endl;
 	{
 		try {

@@ -6,24 +6,20 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:25:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/01 15:31:06 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/05 11:41:20 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <algorithm>
-#include <limits>
+#include <numeric>
 #include <vector>
 
 // Default Constructor
-Span::Span()
-	: _maxSize(0)
-{}
+Span::Span() : _maxSize(0) {}
 
 // Parameterized constructor
-Span::Span(unsigned int N)
-	: _maxSize(N)
-{}
+Span::Span(unsigned int N) : _maxSize(N) {}
 
 // Copy constructor
 Span::Span(const Span& other)
@@ -49,13 +45,9 @@ unsigned int Span::shortestSpan() const {
 		throw NoSpanException();
 	std::vector<int> sorted = this->_numbers;
 	std::sort(sorted.begin(), sorted.end());
-	unsigned int minSpan = std::numeric_limits<unsigned int>::max();
-	for (size_t i = 1; i < sorted.size(); ++i) {
-		unsigned int span = sorted[i] - sorted[i - 1];
-		if (span < minSpan)
-			minSpan = span;
-	}
-	return minSpan;
+	std::vector<int> diffs(sorted.size());
+	std::adjacent_difference(sorted.begin(), sorted.end(), diffs.begin());
+	return *std::min_element(diffs.begin() + 1, diffs.end());
 }
 
 unsigned int Span::longestSpan() const {

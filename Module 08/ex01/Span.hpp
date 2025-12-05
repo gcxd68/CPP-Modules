@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:22:16 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/01 15:29:58 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/05 11:38:17 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Span {
 
 		// Default Constructor
 		Span(void);
-		
+
 		// Parameterized constructor
 		Span(unsigned int N);
 
@@ -70,13 +70,12 @@ class Span {
 
 };
 
+// Free template function(s)
 template <typename Iterator>
 void Span::addRange(Iterator begin, Iterator end) {
-	while (begin != end) {
-		if (_numbers.size() >= _maxSize)
-			throw ContainerFullException();
-		_numbers.push_back(*begin++);
-	}
+	if (this->_numbers.size() + std::distance(begin, end) > this->_maxSize)
+		throw ContainerFullException();
+	this->_numbers.insert(this->_numbers.end(), begin, end);
 }
 
 #endif
