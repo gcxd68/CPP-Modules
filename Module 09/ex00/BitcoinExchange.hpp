@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:30:03 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/05 13:41:49 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/09 12:57:16 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,31 @@ class BitcoinExchange {
 
 	private:
 
+		// Attribute(s)
 		std::map<std::string, float>	_database;
 
+		// Core method(s)
 		void	loadDatabase(const std::string& csvData);
 
 	public:
 
-		BitcoinExchange();
+		// Default constructor
+		BitcoinExchange(void);
 
+		// Parameterized constructor
 		BitcoinExchange(const std::string& csvFile);
 
+		// Copy constructor
 		BitcoinExchange(const BitcoinExchange& other);
 
+		// Copy assignment operator
 		BitcoinExchange& operator=(const BitcoinExchange& other);
 
+		// Destructor
 		~BitcoinExchange(void);
+
+		// Core method(s)
+		void processInput(const std::string& inputFile);
 
 };
 

@@ -6,56 +6,75 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:30:05 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/05 13:56:36 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/09 12:56:08 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <fstream>
 #include <iostream>
-// #include <sstream>
+#include <cstdlib>
 
-// Default constructor
-BitcoinExchange::BitcoinExchange() {
+BitcoinExchange::BitcoinExchange(void) {
 	loadDatabase("data.csv");
 }
 
-// Parameterized constructor
-BitcoinExchange::BitcoinExchange(const std::string& csvFile) {
-	loadDatabase(csvFile);
-}
-
-// Copy constructor
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
 	: _database(other._database)
 {}
 
-// Copy assignment operator
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
 	if (this != &other)
 		this->_database = other._database;
 	return *this;
 }
 
-// Destructor
 BitcoinExchange::~BitcoinExchange(void) {}
 
-void BitcoinExchange::loadDatabase(const std::string& csvData) {
-	std::ifstream infile(csvData, std::ios::binary);
+void BitcoinExchange::loadDatabase(const std::string& csvFile) {
+	std::ifstream infile(csvFile.c_str());
 	if (!infile.is_open()) {
-		std::cout << "Error: could not open infile" << std::endl;
+		std::cout << "Error: could not open database file." << std::endl;
 		return;
 	}
+	
 	std::string line;
+	std::getline(infile, line); // Skip header "date,exchange_rate"
+	
 	while (std::getline(infile, line)) {
-		if (line == "date | value") {
+		size_t commaPos = line.find(',');
+		if (commaPos == std::string::npos)
 			continue;
-		}
+		
+		std::string date = line.substr(0, commaPos);
+		std::string valueStr = line.substr(commaPos + 1);
+		
+		char* endPtr;
+		float rate = std::strtof(valueStr.c_str(), &endPtr);
+		
+		_database[date] = rate;
+	}
+	
+	infile.close();
+}
+
+void BitcoinExchange::processInput(const std::string& inputFile) {
+	std::ifstream infile(inputFile.c_str());
+	if (!infile.is_open()) {
+		std::cout << "Error: could not open file." << std::endl;
+		return;
+	}
+	
+	std::string line;
+	std::getline(infile, line); // Skip header "date | value"
+	
+	while (std::getline(infile, line)) {
 		size_t pipePos = line.find('|');
 		if (pipePos == std::string::npos) {
 			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
+		
 		std::string date = line.substr(0, pipePos);
 		std::string valueStr = line.substr(pipePos + 1);
 		
