@@ -1,48 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 10:17:53 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/12 14:40:53 by gdosch           ###   ########.fr       */
+/*   Created: 2025/12/12 14:36:36 by gdosch            #+#    #+#             */
+/*   Updated: 2025/12/12 14:40:47 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_HPP
-# define RPN_HPP
+#ifndef PMERGEME_HPP
+# define PMERGEME_HPP
 
-# include <stack>
 # include <string>
 
-class RPN {
+class PMergeMe {
 
 	private:
 
 		// Attribute(s)
-		std::stack<int> _stack;
-
-		// Core method(s)
-		bool	isOperator(char c) const;
-		int		performOperation(int a, int b, char op);
+        
 
 	public:
 
 		// Default constructor
-		RPN(void);
+		PMergeMe(void);
 
 		// Copy constructor
-		RPN(const RPN& other);
+		PMergeMe(const PMergeMe& other);
 
 		// Copy assignment operator
-		RPN& operator=(const RPN& other);
+		PMergeMe& operator=(const PMergeMe& other);
 
 		// Destructor
-		~RPN(void);
+		~PMergeMe(void);
 
 		// Core method(s)
-		int evaluate(const std::string& expression);
+        
 
 };
 
