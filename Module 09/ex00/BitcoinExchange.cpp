@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:30:05 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/11 14:07:48 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/12 10:15:19 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,15 @@ void BitcoinExchange::loadDatabase(const std::string& csvFile) {
 		size_t commaPos = line.find(',');
 		std::string date = line.substr(0, commaPos);
 		std::string valueStr = line.substr(commaPos + 1);
-		char* endPtr;
-		float rate = std::strtof(valueStr.c_str(), &endPtr);
+		float rate = std::strtof(valueStr.c_str(), NULL);
 		_database[date] = rate;
 	}
 	infile.close();
+}
+
+static void trimWhiteSpaces(std::string& string) {
+	string.erase(0, string.find_first_not_of(" \f\n\r\t\v"));
+	string.erase(string.find_last_not_of(" \f\n\r\t\v") + 1);
 }
 
 static bool isLeapYear(int year) {
@@ -110,7 +114,14 @@ void BitcoinExchange::processInput(const std::string& inputFile) {
 		return;
 	}
 	std::string line;
-	for (bool isFirstLine = true; std::getline(infile, line); isFirstLine = false) {
+	bool isFirstLine = true;
+	while (std::getline(infile, line)) {
+		if (isFirstLine) {
+			isFirstLine = false;
+			if (line == "date | value")
+				continue;
+			std::cout << "Error: bad or no header => " << line << std::endl;
+		}
 		size_t pipePos = line.find('|');
 		if (pipePos == std::string::npos) {
 			std::cout << "Error: bad input => " << line << std::endl;
@@ -118,15 +129,11 @@ void BitcoinExchange::processInput(const std::string& inputFile) {
 		}
 		std::string date = line.substr(0, pipePos);
 		std::string valueStr = line.substr(pipePos + 1);
-		date.erase(0, date.find_first_not_of(" \t"));
-		date.erase(date.find_last_not_of(" \t") + 1);
-		valueStr.erase(0, valueStr.find_first_not_of(" \t"));
-		valueStr.erase(valueStr.find_last_not_of(" \t") + 1);
+		trimWhiteSpaces(date);
+		trimWhiteSpaces(valueStr);
 		char* endPtr;
 		float value = std::strtof(valueStr.c_str(), &endPtr);
-		if (isFirstLine && date == "date" && valueStr == "value")
-			;
-		else if (!isValidDate(date) || *endPtr)
+		if (!isValidDate(date) || *endPtr)
 			std::cout << "Error: bad input => " << line << std::endl;
 		else if (value < 0 || value > 1000)
 			std::cout << "Error: " << (value < 0 ? "not a positive" : "too large a") << " number." << std::endl;

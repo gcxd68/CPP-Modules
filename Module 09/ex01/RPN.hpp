@@ -1,50 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 12:30:03 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/12 09:53:39 by gdosch           ###   ########.fr       */
+/*   Created: 2025/12/12 10:17:53 by gdosch            #+#    #+#             */
+/*   Updated: 2025/12/12 14:15:21 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BITCOINEXCHANGE_HPP
-# define BITCOINEXCHANGE_HPP
 
-# include <map>
+#ifndef RPN_HPP
+# define RPN_HPP
+
+# include <stack>
 # include <string>
 
-class BitcoinExchange {
+class RPN {
 
 	private:
 
 		// Attribute(s)
-		std::map<std::string, float> _database;
+		std::stack<int> _stack;
 
 		// Core method(s)
-		void loadDatabase(const std::string& csvData);
+		bool	isOperator(char c) const;
+		int		performOperation(int a, int b, char op);
 
 	public:
 
 		// Default constructor
-		BitcoinExchange(void);
-
-		// Parameterized constructor
-		BitcoinExchange(const std::string& csvFile);
+		RPN(void);
 
 		// Copy constructor
-		BitcoinExchange(const BitcoinExchange& other);
+		RPN(const RPN& other);
 
 		// Copy assignment operator
-		BitcoinExchange& operator=(const BitcoinExchange& other);
+		RPN& operator=(const RPN& other);
 
 		// Destructor
-		~BitcoinExchange(void);
+		~RPN(void);
 
 		// Core method(s)
-		void processInput(const std::string& inputFile);
+		int evaluate(const std::string& expression);
 
 };
 
