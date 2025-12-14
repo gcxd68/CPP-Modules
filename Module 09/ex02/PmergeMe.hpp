@@ -6,40 +6,38 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:36 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/13 22:28:38 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/14 18:16:48 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
+# include <cstddef>
 # include <vector>
 # include <deque>
-# include <string>
+# include <list>
+# include <limits>
 
+template <typename Container>
 class PmergeMe {
 
 	private:
 
 		// Attribute(s)
-		std::vector<unsigned int>	_vec;
-		std::deque<unsigned int>	_deq;
-	
-		// Core method(s)
-		unsigned int jacobsthal(size_t n) const;
+		Container _container;
 
-		// Ford-Johnson Algorithm
-		template <typename SeqContainer>
-		void generateInsertionOrder(size_t n, SeqContainer& order) const;
-		template <typename SeqContainer>
-		void binaryInsert(SeqContainer& arr, unsigned int value, size_t end);
-		template <typename SeqContainer, typename PairContainer>
-		void fordJohnson(SeqContainer& arr);
+		// Member function(s)
+		void fordJohnson(std::deque<unsigned int>& arr);
+		void fordJohnson(std::list<unsigned int>& arr);
 
 	public:
 
 		// Default constructor
 		PmergeMe(void);
+
+		// Parameterized constructor
+		explicit PmergeMe(const Container& container);
 
 		// Copy constructor
 		PmergeMe(const PmergeMe& other);
@@ -51,73 +49,77 @@ class PmergeMe {
 		~PmergeMe(void);
 
 		// Core method(s)
-		void parseInput(int argc, char** argv);
-		void sortDeque(void);
-		void sortVector(void);
-		void displayBefore(void) const;
-		void displayAfter(void) const;
-		void verifySort(void) const;
-	
-		// Getter(s)
+		void sort(void);
+
+		// Accessor(s)
 		size_t size(void) const;
+		const Container& getContainer(void) const;
 
 };
 
-// Ford-Johnson Algorithm
-template <typename SeqContainer>
-void PmergeMe::generateInsertionOrder(size_t n, SeqContainer& order) const {
-	order.clear();
-	if (n <= 0)
-		return;
-	SeqContainer jacob;
-	unsigned int jac;
-	for (size_t i = 1; (jac = jacobsthal(i)) <= n; i++)
-		jacob.push_back(jac);
-	unsigned int prev = 0;
-	for (size_t i = 0; i < jacob.size(); i++) {
-		for (unsigned int j = jacob[i]; j > prev; j--)
-			if (j <= n)
-				order.push_back(j);
-		prev = jacob[i];
-	}
-	for (unsigned int j = n; j > prev; j--)
-		order.push_back(j);
+// Free function(s)
+unsigned int jacobsthal(size_t n);
+void generateInsertionOrder(size_t n, std::vector<size_t>& order);
+
+// Default constructor
+template <typename Container>
+PmergeMe<Container>::PmergeMe(void) : _container() {}
+
+// Parameterized constructor
+template <typename Container>
+PmergeMe<Container>::PmergeMe(const Container& container) : _container(container) {}
+
+// Copy constructor
+template <typename Container>
+PmergeMe<Container>::PmergeMe(const PmergeMe& other) : _container(other._container) {}
+
+// Copy assignment operator
+template <typename Container>
+PmergeMe<Container>& PmergeMe<Container>::operator=(const PmergeMe& other) {
+	if (this != &other)
+		_container = other._container;
+	return *this;
 }
 
-template <typename SeqContainer>
-void PmergeMe::binaryInsert(SeqContainer& arr, unsigned int value, size_t end) {
-	size_t left = 0;
-	size_t right = end;
-	while (left < right) {
-		size_t mid = left + (right - left) / 2;
-		if (arr[mid] < value)
-			left = mid + 1;
-		else
-			right = mid;
-	}
-	arr.insert(arr.begin() + left, value);
+// Destructor
+template <typename Container>
+PmergeMe<Container>::~PmergeMe(void) {}
+
+// Core method(s)
+template <typename Container>
+void PmergeMe<Container>::sort(void) {
+	fordJohnson(_container);
 }
 
-template <typename SeqContainer, typename PairContainer>
-void PmergeMe::fordJohnson(SeqContainer& arr) {
+// Accessor(s)
+template <typename Container>
+size_t PmergeMe<Container>::size(void) const {
+	return _container.size();
+}
+
+template <typename Container>
+const Container& PmergeMe<Container>::getContainer(void) const {
+	return _container;
+}
+
+// Ford-Johnson algorithm for std::deque<unsigned int>
+template <typename Container>
+void PmergeMe<Container>::fordJohnson(std::deque<unsigned int>& arr) {
 	size_t n = arr.size();
 	if (n <= 1)
 		return;
-	PairContainer pairs;
+	std::deque<std::pair<unsigned int, unsigned int> > pairs;
 	for (size_t i = 0; i < n / 2; i++) {
 		unsigned int a = arr[2 * i];
 		unsigned int b = arr[2 * i + 1];
-		if (a > b)
-			pairs.push_back(std::make_pair(a, b));
-		else
-			pairs.push_back(std::make_pair(b, a));
+		pairs.push_back((a > b) ? std::make_pair(a, b) : std::make_pair(b, a));
 	}
 	if (pairs.size() > 1) {
-		SeqContainer largerOnly;
+		std::deque<unsigned int> largerOnly;
 		for (size_t i = 0; i < pairs.size(); i++)
 			largerOnly.push_back(pairs[i].first);
-		fordJohnson<SeqContainer, PairContainer>(largerOnly);
-		PairContainer sortedPairs;
+		fordJohnson(largerOnly);
+		std::deque<std::pair<unsigned int, unsigned int> > sortedPairs;
 		for (size_t i = 0; i < largerOnly.size(); i++) {
 			for (size_t j = 0; j < pairs.size(); j++) {
 				if (pairs[j].first == largerOnly[i]) {
@@ -128,16 +130,16 @@ void PmergeMe::fordJohnson(SeqContainer& arr) {
 		}
 		pairs = sortedPairs;
 	}
-	SeqContainer mainChain;
+	std::deque<unsigned int> mainChain;
 	if (!pairs.empty())
 		mainChain.push_back(pairs[0].second);
 	for (size_t i = 0; i < pairs.size(); i++)
 		mainChain.push_back(pairs[i].first);
-	std::vector<int> insertOrder;
+	std::vector<size_t> insertOrder;
 	generateInsertionOrder(pairs.size() - 1, insertOrder);
 	for (size_t i = 0; i < insertOrder.size(); i++) {
-		int idx = insertOrder[i];
-		if (idx > 0 && idx < static_cast<int>(pairs.size())) {
+		size_t idx = insertOrder[i];
+		if (idx && idx < pairs.size()) {
 			size_t searchLimit = 0;
 			for (size_t j = 0; j < mainChain.size(); j++) {
 				if (mainChain[j] == pairs[idx].first) {
@@ -145,11 +147,97 @@ void PmergeMe::fordJohnson(SeqContainer& arr) {
 					break;
 				}
 			}
-			binaryInsert(mainChain, pairs[idx].second, searchLimit);
+			size_t left = 0, right = searchLimit;
+			while (left < right) {
+				size_t mid = left + (right - left) / 2;
+				if (mainChain[mid] < pairs[idx].second)
+					left = mid + 1;
+				else
+					right = mid;
+			}
+			mainChain.insert(mainChain.begin() + left, pairs[idx].second);
 		}
 	}
-	if (n % 2)
-		binaryInsert(mainChain, arr[n - 1], mainChain.size());
+	if (n % 2) {
+		unsigned int straggler = arr[n - 1];
+		size_t left = 0, right = mainChain.size();
+		while (left < right) {
+			size_t mid = left + (right - left) / 2;
+			if (mainChain[mid] < straggler)
+				left = mid + 1;
+			else
+				right = mid;
+		}
+		mainChain.insert(mainChain.begin() + left, straggler);
+	}
+	arr = mainChain;
+}
+
+// Ford-Johnson algorithm for std::list<unsigned int>
+template <typename Container>
+void PmergeMe<Container>::fordJohnson(std::list<unsigned int>& arr) {
+	size_t n = arr.size();
+	if (n <= 1)
+		return;
+	std::list<std::pair<unsigned int, unsigned int> > pairs;
+	std::list<unsigned int>::iterator it = arr.begin();
+	for (size_t i = 0; i < n / 2; i++) {
+		unsigned int a = *it++;
+		unsigned int b = *it++;
+		pairs.push_back((a > b) ? std::make_pair(a, b) : std::make_pair(b, a));
+	}
+	if (pairs.size() > 1) {
+		std::list<unsigned int> largerOnly;
+		for (std::list<std::pair<unsigned int, unsigned int> >::iterator pit = pairs.begin();
+			 pit != pairs.end(); ++pit)
+			largerOnly.push_back(pit->first);
+		fordJohnson(largerOnly);
+		std::list<std::pair<unsigned int, unsigned int> > sortedPairs;
+		for (std::list<unsigned int>::iterator lit = largerOnly.begin();
+			 lit != largerOnly.end(); ++lit) {
+			for (std::list<std::pair<unsigned int, unsigned int> >::iterator pit = pairs.begin();
+				 pit != pairs.end(); ++pit) {
+				if (pit->first == *lit) {
+					sortedPairs.push_back(*pit);
+					break;
+				}
+			}
+		}
+		pairs = sortedPairs;
+	}
+	std::list<unsigned int> mainChain;
+	if (!pairs.empty())
+		mainChain.push_back(pairs.begin()->second);
+	for (std::list<std::pair<unsigned int, unsigned int> >::iterator pit = pairs.begin();
+		 pit != pairs.end(); ++pit)
+		mainChain.push_back(pit->first);
+	std::vector<size_t> insertOrder;
+	generateInsertionOrder(pairs.size() - 1, insertOrder);
+	for (size_t i = 0; i < insertOrder.size(); i++) {
+		size_t idx = insertOrder[i];
+		if (idx && idx < pairs.size()) {
+			std::list<std::pair<unsigned int, unsigned int> >::iterator pit = pairs.begin();
+			std::advance(pit, idx);
+			std::list<unsigned int>::iterator searchEnd = mainChain.begin();
+			while (searchEnd != mainChain.end() && *searchEnd != pit->first)
+				++searchEnd;
+			if (searchEnd != mainChain.end())
+				++searchEnd;
+			std::list<unsigned int>::iterator insertPos = mainChain.begin();
+			while (insertPos != searchEnd && *insertPos < pit->second)
+				++insertPos;
+			mainChain.insert(insertPos, pit->second);
+		}
+	}
+	if (n % 2) {
+		std::list<unsigned int>::iterator lastIt = arr.begin();
+		std::advance(lastIt, n - 1);
+		unsigned int straggler = *lastIt;
+		std::list<unsigned int>::iterator insertPos = mainChain.begin();
+		while (insertPos != mainChain.end() && *insertPos < straggler)
+			++insertPos;
+		mainChain.insert(insertPos, straggler);
+	}
 	arr = mainChain;
 }
 
