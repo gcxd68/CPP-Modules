@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:30:05 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/15 13:18:18 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:20:52 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void BitcoinExchange::processInput(const std::string& inputFile) {
 				continue;
 			}
 		char* endPtr;
-		double value = std::strtof(valueStr.c_str(), &endPtr);
+		float value = std::strtof(valueStr.c_str(), &endPtr);
 		if (!isValidDate(date) || *endPtr)
 			std::cout << "Error: bad input => " << line << std::endl;
 		else if (value < 0 || value > 1000)
@@ -146,7 +146,7 @@ void BitcoinExchange::processInput(const std::string& inputFile) {
 			std::map<std::string, float>::const_iterator it = _database.lower_bound(date);
 			if (it == _database.end() || it->first != date)
 				it--;
-			double result = value * it->second;
+			float result = value * it->second;
 			std::cout << date << " => " << value << " = " << result << std::endl;
 		}
 	}
