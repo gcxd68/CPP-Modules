@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:36 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/15 15:14:14 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/15 15:46:55 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define PMERGEME_HPP
 
 # include <cstddef>
-# include <vector>
 # include <deque>
-# include <list>
 # include <limits>
+# include <list>
+# include <stdexcept>
+# include <vector>
 
 typedef std::deque<unsigned int> UIntDeque;
 typedef std::deque<std::pair<unsigned int, unsigned int> > UIntPairDeque;
@@ -48,6 +49,10 @@ class PmergeMe {
 		void insertStraggler(const UIntList& seq, UIntList& mainChain) const;
 		void fordJohnson(UIntList& seq) const;
 
+		// Fallback for unsupported containers
+		template <typename OtherContainer>
+		void fordJohnson(OtherContainer&) const;
+
 	public:
 
 		// Default constructor
@@ -76,6 +81,13 @@ class PmergeMe {
 
 // Free function(s)
 void generateInsertionOrder(size_t n, std::vector<size_t>& order);
+
+// Fallback for unsupported containers
+template <typename Container>
+template <typename OtherContainer>
+void PmergeMe<Container>::fordJohnson(OtherContainer&) const {
+    throw std::runtime_error("Error: Unsupported container type, must be std::deque or std::list");
+}
 
 // Ford-Johnson for std::deque
 template <typename Container>

@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/15 13:18:33 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/15 15:54:18 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,27 +70,32 @@ int main(int argc, char** argv) {
 		displaySequence("Before:", data);
 
 		UIntDeque deqData(data.begin(), data.end());
-		PmergeMe<UIntDeque > pmergeDeq(deqData);
+		PmergeMe<UIntDeque> pmergeDeq(deqData);
 		double startDeq = getTime();
 		pmergeDeq.sort();
 		double endDeq = getTime();
 		displaySequence("Deque after: ", pmergeDeq.getContainer());
 
 		UIntList listData(data.begin(), data.end());
-		PmergeMe<UIntList > pmergeList(listData);
+		PmergeMe<UIntList> pmergeList(listData);
 		double startList = getTime();
 		pmergeList.sort();
 		double endList = getTime();
 		displaySequence("List after: ", pmergeList.getContainer());
 
 		verifySort(pmergeDeq.getContainer(), pmergeList.getContainer());
-
-		std::cout << std::fixed << std::setprecision(5);
-		std::cout << "Time to process a range of " << data.size()
-				  << " elements with std::deque : " << endDeq - startDeq << " us" << std::endl;
-		std::cout << "Time to process a range of " << data.size()
-				  << " elements with std::list  : " << endList - startList << " us" << std::endl;
-
+ 
+		std::cout
+			<< std::fixed << std::setprecision(5)
+			<< "Time to process a range of " << data.size()
+			<< " elements with std::deque : " << endDeq - startDeq << " us" << std::endl
+			<< "Time to process a range of " << data.size()
+			<< " elements with std::list  : " << endList - startList << " us" << std::endl
+			<< "Trying to sort an unsupported container:" << std::endl;
+			
+		PmergeMe<std::vector<unsigned int> > pmergeVec(data);
+		pmergeVec.sort();
+		
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 		return 1;
