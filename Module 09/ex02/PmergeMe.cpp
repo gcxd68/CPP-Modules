@@ -6,14 +6,13 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:39 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/14 18:16:20 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:03:02 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-// Free function(s)
-unsigned int jacobsthal(size_t n) {
+static unsigned int jacobsthal(size_t n) {
 	if (n == 0)
 		return 0;
 	if (n == 1)

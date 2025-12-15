@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:30:05 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/12 10:15:19 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:18:18 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,13 @@ void BitcoinExchange::processInput(const std::string& inputFile) {
 		std::string valueStr = line.substr(pipePos + 1);
 		trimWhiteSpaces(date);
 		trimWhiteSpaces(valueStr);
+		if (!valueStr.find("1000."))
+			if (valueStr.substr(5).find_first_not_of('0') != std::string::npos) {
+				std::cout << "Error: too large a number." << std::endl;
+				continue;
+			}
 		char* endPtr;
-		float value = std::strtof(valueStr.c_str(), &endPtr);
+		double value = std::strtof(valueStr.c_str(), &endPtr);
 		if (!isValidDate(date) || *endPtr)
 			std::cout << "Error: bad input => " << line << std::endl;
 		else if (value < 0 || value > 1000)

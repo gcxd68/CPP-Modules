@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/14 18:14:14 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/15 13:18:33 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,20 @@ static void displaySequence(const std::string& label, const Container& seq) {
 	std::cout << std::endl;
 }
 
-static void verifySort(const std::deque<unsigned int>& deq, const std::list<unsigned int>& lst) {
+static void verifySort(const UIntDeque& deq, const UIntList& lst) {
 	for (size_t i = 1; i < deq.size(); i++)
 		if (deq[i - 1] > deq[i])
 			throw std::runtime_error("Error: deque not sorted");
-	for (std::list<unsigned int>::const_iterator curr = lst.begin(), prev = curr; ++curr != lst.end(); prev = curr)
+	for (UIntList::const_iterator curr = lst.begin(), prev = curr; ++curr != lst.end(); prev = curr)
 		if (*prev > *curr)
 			throw std::runtime_error("Error: list not sorted");
 	if (deq.size() != lst.size())
 		throw std::runtime_error("Error: containers have different sizes");
-	std::list<unsigned int>::const_iterator lit = lst.begin();
+	UIntList::const_iterator lit = lst.begin();
 	for (size_t i = 0; i < deq.size(); i++)
 		if (deq[i] != *lit++)
 			throw std::runtime_error("Error: containers differ");
+	std::cout << "Both containers are sorted and identical" << std::endl;
 }
 
 int main(int argc, char** argv) {
@@ -68,15 +69,15 @@ int main(int argc, char** argv) {
 		std::vector<unsigned int> data = parseInput(argc, argv);
 		displaySequence("Before:", data);
 
-		std::deque<unsigned int> deqData(data.begin(), data.end());
-		PmergeMe<std::deque<unsigned int> > pmergeDeq(deqData);
+		UIntDeque deqData(data.begin(), data.end());
+		PmergeMe<UIntDeque > pmergeDeq(deqData);
 		double startDeq = getTime();
 		pmergeDeq.sort();
 		double endDeq = getTime();
 		displaySequence("Deque after: ", pmergeDeq.getContainer());
 
-		std::list<unsigned int> listData(data.begin(), data.end());
-		PmergeMe<std::list<unsigned int> > pmergeList(listData);
+		UIntList listData(data.begin(), data.end());
+		PmergeMe<UIntList > pmergeList(listData);
 		double startList = getTime();
 		pmergeList.sort();
 		double endList = getTime();
