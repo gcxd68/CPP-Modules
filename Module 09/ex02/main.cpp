@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/15 15:54:18 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/16 13:20:56 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <limits>
 #include <cstdlib>
 #include <stdexcept>
+#include <vector>
 
 double getTime(void) {
 	struct timespec ts;
@@ -70,32 +71,26 @@ int main(int argc, char** argv) {
 		displaySequence("Before:", data);
 
 		UIntDeque deqData(data.begin(), data.end());
-		PmergeMe<UIntDeque> pmergeDeq(deqData);
 		double startDeq = getTime();
-		pmergeDeq.sort();
+		PmergeMe pmergeDeq(deqData);
 		double endDeq = getTime();
-		displaySequence("Deque after: ", pmergeDeq.getContainer());
+		displaySequence("Deque after: ", pmergeDeq.getDeque());
 
 		UIntList listData(data.begin(), data.end());
-		PmergeMe<UIntList> pmergeList(listData);
 		double startList = getTime();
-		pmergeList.sort();
+		PmergeMe pmergeList(listData);
 		double endList = getTime();
-		displaySequence("List after: ", pmergeList.getContainer());
+		displaySequence("List after: ", pmergeList.getList());
 
-		verifySort(pmergeDeq.getContainer(), pmergeList.getContainer());
+		verifySort(pmergeDeq.getDeque(), pmergeList.getList());
  
 		std::cout
 			<< std::fixed << std::setprecision(5)
 			<< "Time to process a range of " << data.size()
 			<< " elements with std::deque : " << endDeq - startDeq << " us" << std::endl
 			<< "Time to process a range of " << data.size()
-			<< " elements with std::list  : " << endList - startList << " us" << std::endl
-			<< "Trying to sort an unsupported container:" << std::endl;
-			
-		PmergeMe<std::vector<unsigned int> > pmergeVec(data);
-		pmergeVec.sort();
-		
+			<< " elements with std::list  : " << endList - startList << " us" << std::endl;
+
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 		return 1;
