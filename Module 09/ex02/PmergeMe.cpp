@@ -6,12 +6,15 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:39 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/18 13:14:22 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/18 13:34:42 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <cstddef>
+#include <deque>
 #include <limits>
+#include <list>
 #include <vector>
 
 static size_t jacobsthal(size_t n) {

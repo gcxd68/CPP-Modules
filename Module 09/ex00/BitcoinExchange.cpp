@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:30:05 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/15 13:20:52 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/18 13:37:18 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void BitcoinExchange::loadDatabase(const std::string& csvFile) {
 	infile.close();
 }
 
-static void trimWhiteSpaces(std::string& string) {
-	string.erase(0, string.find_first_not_of(" \f\n\r\t\v"));
-	string.erase(string.find_last_not_of(" \f\n\r\t\v") + 1);
+static void trimWhiteSpaces(std::string& str) {
+	str.erase(0, str.find_first_not_of(" \f\n\r\t\v"));
+	str.erase(str.find_last_not_of(" \f\n\r\t\v") + 1);
 }
 
 static bool isLeapYear(int year) {
@@ -70,16 +70,11 @@ static bool isFutureDate(int year, int month, int day) {
 	int currentYear = 1900 + today->tm_year;
 	int currentMonth = 1 + today->tm_mon;
 	int currentDay = today->tm_mday;
-	if (year > currentYear)
-		return true;
-	if (year < currentYear)
-		return false;
-	if (month > currentMonth)
-		return true;
-	if (month < currentMonth)
-		return false;
-	if (day > currentDay)
-		return true;
+	if (year > currentYear) return true;
+	if (year < currentYear)	return false;
+	if (month > currentMonth) return true;
+	if (month < currentMonth) return false;
+	if (day > currentDay) return true;
 	return false;
 }
 
