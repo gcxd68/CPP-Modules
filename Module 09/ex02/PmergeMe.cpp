@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:39 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/16 14:16:48 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/18 13:14:22 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,18 @@
 #include <vector>
 
 static size_t jacobsthal(size_t n) {
-	size_t prev2 = 0;
-	size_t prev1 = 1;
-	size_t curr = n;
-	for (size_t i = 2; i <= n; i++) {
-		if (prev1 > std::numeric_limits<size_t>::max() - 2 * prev2)
-			return std::numeric_limits<size_t>::max();
-		curr = prev1 + 2 * prev2;
-		prev2 = prev1;
-		prev1 = curr;
-	}
-	return curr;
+	if (n < 2)
+		return n;
+	if (n > 65)
+		return std::numeric_limits<size_t>::max();
+	if (n == 64)
+		return 6148914691236517205UL;
+	if (n == 65)
+		return 12297829382473034411UL;
+	unsigned long long power = 1ULL << n;
+	unsigned long long ret = (n % 2) ? (power + 1) / 3 : (power - 1) / 3;
+	return static_cast<size_t>(ret);
 }
-
-// PLUS EFFICACE
-// static size_t jacobsthal(size_t n) {
-// 	if (n >= 64)
-// 		return std::numeric_limits<size_t>::max();
-// 	unsigned long long power = 1ULL << n;
-// 	unsigned long long ret = (n % 2) ? (power + 1) / 3 : (power - 1) / 3;
-// 	return ret > std::numeric_limits<size_t>::max() 
-// 		? std::numeric_limits<size_t>::max() 
-// 		: static_cast<size_t>(ret);
-// }
 
 static void generateInsertionOrder(size_t n, std::vector<size_t>& order) {
 	order.clear();
@@ -53,6 +42,25 @@ static void generateInsertionOrder(size_t n, std::vector<size_t>& order) {
 				order.push_back(j);
 	for (size_t j = n; j > prev; j--)
 		order.push_back(j);
+}
+
+static void insertValue(UIntDeque& mainChain, unsigned int value, size_t searchLimit) {
+	size_t left = 0, right = searchLimit;
+	while (left < right) {
+		size_t mid = left + (right - left) / 2;
+		if (mainChain[mid] < value)
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	mainChain.insert(mainChain.begin() + left, value);
+}
+
+static void insertValue(UIntList& mainChain, unsigned int value, UIntList::iterator searchLimit) {
+	UIntList::iterator it = mainChain.begin();
+	while (it != searchLimit && *it < value)
+		++it;
+	mainChain.insert(it, value);
 }
 
 // Ford-Johnson for std::deque
@@ -94,38 +102,13 @@ void PmergeMe::insertPending(const UIntPairDeque& pairs, UIntDeque& mainChain) c
 		size_t idx = insertOrder[i];
 		if (idx && idx < pairs.size()) {
 			size_t searchLimit = 0;
-			for (size_t j = 0; j < mainChain.size(); j++) {
+			for (size_t j = 0; j < mainChain.size(); j++)
 				if (mainChain[j] == pairs[idx].first) {
 					searchLimit = j + 1;
 					break;
 				}
-			}
-			size_t left = 0, right = searchLimit;
-			while (left < right) {
-				size_t mid = left + (right - left) / 2;
-				if (mainChain[mid] < pairs[idx].second)
-					left = mid + 1;
-				else
-					right = mid;
-			}
-			mainChain.insert(mainChain.begin() + left, pairs[idx].second);
+			insertValue(mainChain, pairs[idx].second, searchLimit);
 		}
-	}
-}
-
-void PmergeMe::insertStraggler(const UIntDeque& seq, UIntDeque& mainChain) const {
-	size_t n = seq.size();
-	if (n % 2) {
-		unsigned int straggler = seq[n - 1];
-		size_t left = 0, right = mainChain.size();
-		while (left < right) {
-			size_t mid = left + (right - left) / 2;
-			if (mainChain[mid] < straggler)
-				left = mid + 1;
-			else
-				right = mid;
-		}
-		mainChain.insert(mainChain.begin() + left, straggler);
 	}
 }
 
@@ -138,7 +121,8 @@ void PmergeMe::fordJohnson(UIntDeque& seq) const {
 	UIntDeque mainChain;
 	buildMainChain(pairs, mainChain);
 	insertPending(pairs, mainChain);
-	insertStraggler(seq, mainChain);
+	if (seq.size() % 2)
+		insertValue(mainChain, seq[seq.size() - 1], mainChain.size());
 	seq = mainChain;
 }
 
@@ -183,29 +167,13 @@ void PmergeMe::insertPending(const UIntPairList& pairs, UIntList& mainChain) con
 		if (idx && idx < pairs.size()) {
 			UIntPairList::const_iterator pit = pairs.begin();
 			std::advance(pit, idx);
-			UIntList::iterator searchEnd = mainChain.begin();
-			while (searchEnd != mainChain.end() && *searchEnd != pit->first)
-				++searchEnd;
-			if (searchEnd != mainChain.end())
-				++searchEnd;
-			UIntList::iterator insertPos = mainChain.begin();
-			while (insertPos != searchEnd && *insertPos < pit->second)
-				++insertPos;
-			mainChain.insert(insertPos, pit->second);
+			UIntList::iterator searchLimit = mainChain.begin();
+			while (searchLimit != mainChain.end() && *searchLimit != pit->first)
+				++searchLimit;
+			if (searchLimit != mainChain.end())
+				++searchLimit;
+			insertValue(mainChain, pit->second, searchLimit);
 		}
-	}
-}
-
-void PmergeMe::insertStraggler(const UIntList& seq, UIntList& mainChain) const {
-	size_t n = seq.size();
-	if (n % 2) {
-		UIntList::const_iterator lastIt = seq.begin();
-		std::advance(lastIt, n - 1);
-		unsigned int straggler = *lastIt;
-		UIntList::iterator insertPos = mainChain.begin();
-		while (insertPos != mainChain.end() && *insertPos < straggler)
-			++insertPos;
-		mainChain.insert(insertPos, straggler);
 	}
 }
 
@@ -218,7 +186,8 @@ void PmergeMe::fordJohnson(UIntList& seq) const {
 	UIntList mainChain;
 	buildMainChain(pairs, mainChain);
 	insertPending(pairs, mainChain);
-	insertStraggler(seq, mainChain);
+	if (seq.size() % 2)
+		insertValue(mainChain, seq.back(), mainChain.end());
 	seq = mainChain;
 }
 
