@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:30:05 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/18 13:37:18 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/19 10:39:33 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static bool isValidDate(const std::string& date) {
 void BitcoinExchange::processInput(const std::string& inputFile) {
 	std::ifstream infile(inputFile.c_str());
 	if (!infile.is_open()) {
-		std::cout << "Error: could not open file." << std::endl;
+		std::cout << "Error: could not open input file." << std::endl;
 		return;
 	}
 	std::string line;

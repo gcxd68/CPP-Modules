@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:47 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/16 13:20:56 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/19 11:19:59 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ double getTime(void) {
 	return ts.tv_sec * 1000000.0 + ts.tv_nsec / 1000.0;
 }
 
-static std::vector<unsigned int> parseInput(int argc, char** argv) {
+static UIntVector parseInput(int argc, char** argv) {
 	if (argc < 2)
 		throw std::runtime_error("Error: no input provided");
-	std::vector<unsigned int> result;
+	UIntVector result;
 	for (int i = 1; i < argc; i++) {
 		if (!argv[i][0])
 			throw std::runtime_error("Error");
@@ -67,20 +67,20 @@ static void verifySort(const UIntDeque& deq, const UIntList& lst) {
 
 int main(int argc, char** argv) {
 	try {
-		std::vector<unsigned int> data = parseInput(argc, argv);
+		UIntVector data = parseInput(argc, argv);
 		displaySequence("Before:", data);
 
 		UIntDeque deqData(data.begin(), data.end());
 		double startDeq = getTime();
 		PmergeMe pmergeDeq(deqData);
 		double endDeq = getTime();
-		displaySequence("Deque after: ", pmergeDeq.getDeque());
+		displaySequence("Deque after:", pmergeDeq.getDeque());
 
 		UIntList listData(data.begin(), data.end());
 		double startList = getTime();
 		PmergeMe pmergeList(listData);
 		double endList = getTime();
-		displaySequence("List after: ", pmergeList.getList());
+		displaySequence("List after:", pmergeList.getList());
 
 		verifySort(pmergeDeq.getDeque(), pmergeList.getList());
  

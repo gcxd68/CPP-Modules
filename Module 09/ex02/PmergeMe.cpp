@@ -6,7 +6,7 @@
 /*   By: gdosch <gdosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:36:39 by gdosch            #+#    #+#             */
-/*   Updated: 2025/12/18 13:34:42 by gdosch           ###   ########.fr       */
+/*   Updated: 2025/12/19 11:27:29 by gdosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ static size_t jacobsthal(size_t n) {
 	if (n == 65)
 		return 12297829382473034411UL;
 	unsigned long long power = 1ULL << n;
-	unsigned long long ret = (n % 2) ? (power + 1) / 3 : (power - 1) / 3;
-	return static_cast<size_t>(ret);
+	return static_cast<size_t>((n % 2) ? (power + 1) / 3 : (power - 1) / 3);
 }
 
-static void generateInsertionOrder(size_t n, std::vector<size_t>& order) {
+static void generateInsertionOrder(size_t n, SizeTVector& order) {
 	order.clear();
 	if (!n)
 		return;
-	std::vector<size_t> jacob;
+	SizeTVector jacob;
 	for (size_t i = 2, jac; (jac = jacobsthal(i)) <= n; i++)
 		jacob.push_back(jac);
 	size_t prev = 0;
@@ -99,7 +98,7 @@ void PmergeMe::buildMainChain(const UIntPairDeque& pairs, UIntDeque& mainChain) 
 }
 
 void PmergeMe::insertPending(const UIntPairDeque& pairs, UIntDeque& mainChain) const {
-	std::vector<size_t> insertOrder;
+	SizeTVector insertOrder;
 	generateInsertionOrder(pairs.size() - 1, insertOrder);
 	for (size_t i = 0; i < insertOrder.size(); i++) {
 		size_t idx = insertOrder[i];
@@ -163,7 +162,7 @@ void PmergeMe::buildMainChain(const UIntPairList& pairs, UIntList& mainChain) co
 }
 
 void PmergeMe::insertPending(const UIntPairList& pairs, UIntList& mainChain) const {
-	std::vector<size_t> insertOrder;
+	SizeTVector insertOrder;
 	generateInsertionOrder(pairs.size() - 1, insertOrder);
 	for (size_t i = 0; i < insertOrder.size(); i++) {
 		size_t idx = insertOrder[i];
